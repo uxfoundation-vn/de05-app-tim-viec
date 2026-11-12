@@ -129,6 +129,8 @@ AC04: Không có kết quả → gợi ý bỏ bớt bộ lọc hoặc đổi t�
 
 #### US1.2 Lọc kết quả
 
+User Story: Là ứng viên, tôi muốn lọc kết quả theo lương, kinh nghiệm, hình thức để chỉ thấy tin phù hợp.
+
 AC01: Lọc theo mức lương (khoảng), kinh nghiệm, hình thức, ngành, ngày đăng; có số kết quả trước khi áp dụng.
 
 AC02: Bộ lọc đang dùng hiện thành chip, xoá từng chip được.
@@ -138,6 +140,8 @@ AC03: "Có ghi mức lương" là một bộ lọc riêng.
 ### UC2. Xem và lưu tin
 
 #### US2.1 Xem chi tiết tin
+
+User Story: Là ứng viên, tôi muốn xem đủ thông tin của tin và biết công ty đã xác minh để quyết định ứng tuyển an toàn.
 
 AC01: Chi tiết tin gồm: chức danh, lương, khu vực và địa chỉ, hình thức, kinh nghiệm, hạn nộp, mô tả, yêu cầu, quyền lợi, thông tin công ty.
 
@@ -150,6 +154,8 @@ AC04: Nút báo cáo tin, chọn lý do (lừa đảo, sai thông tin, nội dun
 AC05: Đã ứng tuyển → nút Ứng tuyển thành "Đã ứng tuyển · Xem đơn".
 
 #### US2.2 Lưu tin
+
+User Story: Là ứng viên, tôi muốn lưu tin để xem sau, không mất tin hay.
 
 AC01: Lưu, bỏ lưu từ danh sách và chi tiết; danh sách tin đã lưu trong tab Việc của tôi.
 
@@ -175,6 +181,8 @@ AC05: Không gửi trùng khi bấm nhiều lần.
 
 #### US4.1 Xem trạng thái đơn
 
+User Story: Là ứng viên, tôi muốn biết trạng thái từng đơn để không phải chờ trong mơ hồ.
+
 AC01: Tab Việc của tôi → Đã ứng tuyển: chức danh, công ty, ngày gửi, trạng thái.
 
 AC02: Trạng thái: Đã gửi, Đã xem, Mời phỏng vấn, Đã nhận, Chưa phù hợp, Đã rút, Tin đã đóng.
@@ -184,6 +192,8 @@ AC03: Có thông báo khi trạng thái đổi.
 AC04: 14 ngày chưa được xem → ghi chú "Nhà tuyển dụng chưa phản hồi".
 
 #### US4.2 Rút đơn
+
+User Story: Là ứng viên, tôi muốn rút đơn khi không còn quan tâm để chủ động trong quá trình tìm việc.
 
 AC01: Rút được khi đơn ở Đã gửi hoặc Đã xem; hỏi xác nhận.
 

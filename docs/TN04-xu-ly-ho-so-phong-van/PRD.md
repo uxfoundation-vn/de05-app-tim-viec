@@ -131,6 +131,8 @@ AC03: Lọc theo đã gắn sao, có CV, kinh nghiệm; tìm theo tên.
 
 #### US1.2 Xem chi tiết ứng viên
 
+User Story: Là nhà tuyển dụng, tôi muốn xem chi tiết ứng viên, ghi chú và gắn sao để nhớ đánh giá của mình.
+
 AC01: Chi tiết hiện hồ sơ đã gửi, CV (xem trong trang, tải về), lời nhắn, số điện thoại, email.
 
 AC02: Mở lần đầu → đơn tự chuyển Đã xem; ứng viên được báo.
@@ -155,6 +157,8 @@ AC04: Gửi xong → đơn chuyển Phỏng vấn, chờ ứng viên chọn.
 
 #### US2.2 Ứng viên trả lời
 
+User Story: Là ứng viên, tôi muốn chọn khung giờ hoặc xin đổi để đi phỏng vấn đúng lịch.
+
 AC01: Ứng viên thấy lời mời: công ty, vị trí, hình thức, địa chỉ hoặc link, các khung giờ.
 
 AC02: Chọn một khung → xác nhận; thêm vào lịch điện thoại được.
@@ -167,6 +171,8 @@ AC05: Không trả lời trong 48 giờ → nhà tuyển dụng được báo, c
 
 #### US2.3 Nhắc và đổi lịch
 
+User Story: Là ứng viên hoặc nhà tuyển dụng, tôi muốn được nhắc trước giờ phỏng vấn và được báo khi lịch thay đổi để không lỡ hẹn.
+
 AC01: Nhắc cả hai bên trước 24 giờ và 2 giờ.
 
 AC02: Nhà tuyển dụng đổi hoặc huỷ lịch đã chốt → ứng viên được báo ngay, kèm lý do.
@@ -174,6 +180,8 @@ AC02: Nhà tuyển dụng đổi hoặc huỷ lịch đã chốt → ứng viên
 ### UC3. Báo kết quả
 
 #### US3.1 Nhận hoặc từ chối
+
+User Story: Là nhà tuyển dụng, tôi muốn gửi kết quả nhận hoặc chưa phù hợp kèm lời nhắn để ứng viên không phải chờ trong im lặng.
 
 AC01: Chọn Đã nhận hoặc Chưa phù hợp cho từng đơn hoặc nhiều đơn.
 

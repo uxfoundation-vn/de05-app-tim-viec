@@ -146,6 +146,8 @@ AC05: Nhân bản tin cũ để đăng nhanh.
 
 #### US2.2 Theo dõi và quản lý tin
 
+User Story: Là nhà tuyển dụng, tôi muốn theo dõi trạng thái tin và đóng, mở lại tin để quản lý tin dễ dàng.
+
 AC01: Danh sách tin theo trạng thái: Nháp, Chờ duyệt, Cần sửa, Đang hiển thị, Bị từ chối, Đã đóng, Bị gỡ.
 
 AC02: Yêu cầu sửa, từ chối → hiện lý do và trường cần sửa; bấm "Sửa" mở đúng trường.
@@ -169,6 +171,8 @@ AC03: Ba quyết định: Duyệt, Yêu cầu sửa (chọn trường và lý do
 AC04: Một tin chỉ một kiểm duyệt viên mở tại một thời điểm.
 
 #### US3.2 Xử lý báo cáo
+
+User Story: Là kiểm duyệt viên, tôi muốn xử lý báo cáo vi phạm để gỡ tin lừa đảo kịp thời.
 
 AC01: Báo cáo vào hàng đợi riêng, ưu tiên cao.
 

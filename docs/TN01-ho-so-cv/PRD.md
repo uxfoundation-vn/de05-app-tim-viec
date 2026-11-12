@@ -124,6 +124,8 @@ AC03: Thoát giữa chừng → phần đã điền được lưu.
 
 #### US1.2 Hoàn thiện từng phần
 
+User Story: Là ứng viên, tôi muốn hoàn thiện hồ sơ từng phần khi rảnh để hồ sơ tốt hơn mà không mất công một lần.
+
 AC01: Màn Hồ sơ hiện các phần dạng thẻ; phần trống có nút "Thêm".
 
 AC02: Mỗi phần sửa ở màn riêng, có nút Lưu; rời màn khi chưa lưu thì hỏi.
@@ -134,6 +136,8 @@ AC04: Chọn "Chưa có kinh nghiệm" → ẩn phần Kinh nghiệm, gợi ý t
 
 #### US1.3 Biết hồ sơ đã tốt chưa
 
+User Story: Là ứng viên, tôi muốn biết nên thêm gì vào hồ sơ để tăng khả năng được gọi.
+
 AC01: Độ hoàn thiện hiện bằng phần trăm và thanh tiến độ.
 
 AC02: Kèm tối đa 3 gợi ý cụ thể, chạm để mở đúng phần cần thêm.
@@ -141,6 +145,8 @@ AC02: Kèm tối đa 3 gợi ý cụ thể, chạm để mở đúng phần cầ
 ### UC2. Quản lý CV
 
 #### US2.1 Tải và chọn CV
+
+User Story: Là ứng viên, tôi muốn tải lên và chọn CV mặc định để ứng tuyển tin yêu cầu CV.
 
 AC01: Tải file từ điện thoại, Google Drive; chỉ PDF, DOCX ≤ 5 MB.
 
