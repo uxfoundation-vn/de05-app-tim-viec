@@ -211,13 +211,13 @@ flowchart TD
 
 ## 6. Điểm vào
 
-| **Điểm vào** | **Dẫn tới** | **Ghi chú** |
-| --- | --- | --- |
-| Tab Tìm việc | UC-05, **SCR-U04** | |
-| Link chia sẻ tin | **SCR-U06** | Mở app hoặc trang Web tin |
-| Tab Việc của tôi → Đã lưu | Danh sách tin đã lưu | |
-| Tab Việc của tôi → Đã ứng tuyển | UC-07, **SCR-U08** | |
-| Thông báo trạng thái đơn | **SCR-U09** | |
+| **Điểm vào** | **Nền tảng** | **Dẫn tới** | **Ghi chú** |
+| --- | --- | --- | --- |
+| Tab Tìm việc | App ứng viên | UC-05, **SCR-U04** |  |
+| Link chia sẻ tin | App ứng viên · Web | **SCR-U06** | Mở app hoặc trang Web tin |
+| Tab Việc của tôi → Đã lưu | App ứng viên | Danh sách tin đã lưu |  |
+| Tab Việc của tôi → Đã ứng tuyển | App ứng viên | UC-07, **SCR-U08** |  |
+| Thông báo trạng thái đơn | App ứng viên | **SCR-U09** |  |
 
 ## 7. Mô tả màn hình
 
@@ -314,6 +314,17 @@ sequenceDiagram
   N->>API: Đổi trạng thái đơn
   API->>App: Thông báo MSG-43
 ```
+
+**Map lỗi → thông báo** `[giả định]`
+
+| **Nhóm lỗi** | **Message** |
+| --- | --- |
+| Tin đã đóng khi mở hoặc khi gửi đơn | MSG-10 |
+| Vượt giới hạn tin đã lưu | MSG-11 |
+| Hồ sơ chưa đủ để ứng tuyển | MSG-13 |
+| Đã rút đơn, chưa đủ 30 ngày | MSG-14 |
+| Vượt giới hạn ứng tuyển trong ngày | MSG-15 |
+| Mất mạng, lỗi máy chủ | Thông báo lỗi chung của app (ngoài bộ MSG của SRS này), cho thử lại |
 
 ## 9. Danh sách thông báo
 

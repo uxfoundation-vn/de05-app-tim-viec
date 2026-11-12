@@ -216,14 +216,14 @@ flowchart TD
 
 ## 6. Điểm vào
 
-| **Điểm vào** | **Dẫn tới** | **Ghi chú** |
-| --- | --- | --- |
-| Đăng ký xong | UC-01 | |
-| Tab Hồ sơ | UC-02, **SCR-U01** | |
-| Banner "Hoàn tất hồ sơ để ứng tuyển" | UC-01 | Khi ứng tuyển lúc chưa có hồ sơ tối thiểu (SRS TN02) |
-| "Thêm CV" ở màn ứng tuyển | UC-03 | SRS TN02 |
-| Hồ sơ → CV | UC-03, **SCR-U03** | |
-| Hồ sơ → Quyền riêng tư | UC-04 | |
+| **Điểm vào** | **Nền tảng** | **Dẫn tới** | **Ghi chú** |
+| --- | --- | --- | --- |
+| Đăng ký xong | App ứng viên | UC-01 |  |
+| Tab Hồ sơ | App ứng viên | UC-02, **SCR-U01** |  |
+| Banner "Hoàn tất hồ sơ để ứng tuyển" | App ứng viên | UC-01 | Khi ứng tuyển lúc chưa có hồ sơ tối thiểu (SRS TN02) |
+| "Thêm CV" ở màn ứng tuyển | App ứng viên | UC-03 | SRS TN02 |
+| Hồ sơ → CV | App ứng viên | UC-03, **SCR-U03** |  |
+| Hồ sơ → Quyền riêng tư | App ứng viên | UC-04 |  |
 
 ## 7. Mô tả màn hình
 
@@ -296,6 +296,15 @@ sequenceDiagram
     App->>U: MSG-05
   end
 ```
+
+**Map lỗi → thông báo** `[giả định]`
+
+| **Nhóm lỗi** | **Message** |
+| --- | --- |
+| Dữ liệu không hợp lệ | MSG-02 và thông báo inline của từng trường |
+| Lưu thất bại (mất mạng, máy chủ lỗi) | MSG-03 |
+| File sai định dạng hoặc quá dung lượng | MSG-06 |
+| File bị đánh dấu không an toàn | MSG-05 |
 
 ## 9. Danh sách thông báo
 

@@ -223,14 +223,14 @@ flowchart TD
 
 ## 6. Điểm vào
 
-| **Điểm vào** | **Dẫn tới** | **Ghi chú** |
-| --- | --- | --- |
-| Đăng ký nhà tuyển dụng xong | **SCR-N01** tạo hồ sơ công ty | |
-| Banner "Xác minh công ty" ở **SCR-N02** | UC-08 | Khi chưa xác minh |
-| **SCR-N02** → Tạo tin, Nhân bản | UC-09 | |
-| Email, thông báo trạng thái tin | Tin tương ứng ở **SCR-N02** | |
-| Web quản trị → Hàng đợi duyệt | UC-10, **SCR-A01** | |
-| Web quản trị → Báo cáo | UC-11, **SCR-A03** | |
+| **Điểm vào** | **Nền tảng** | **Dẫn tới** | **Ghi chú** |
+| --- | --- | --- | --- |
+| Đăng ký nhà tuyển dụng xong | Web nhà tuyển dụng | **SCR-N01** tạo hồ sơ công ty |  |
+| Banner "Xác minh công ty" ở **SCR-N02** | Web nhà tuyển dụng | UC-08 | Khi chưa xác minh |
+| **SCR-N02** → Tạo tin, Nhân bản | Web nhà tuyển dụng | UC-09 |  |
+| Email, thông báo trạng thái tin | Web nhà tuyển dụng | Tin tương ứng ở **SCR-N02** |  |
+| Web quản trị → Hàng đợi duyệt | Web quản trị | UC-10, **SCR-A01** |  |
+| Web quản trị → Báo cáo | Web quản trị | UC-11, **SCR-A03** |  |
 
 ## 7. Mô tả màn hình
 
@@ -329,6 +329,17 @@ sequenceDiagram
     S-->>A: locked_by, MSG-24
   end
 ```
+
+**Map lỗi → thông báo** `[giả định]`
+
+| **Nhóm lỗi** | **Message** |
+| --- | --- |
+| Email không khớp tên miền công ty | MSG-19 |
+| Xác minh công ty thất bại | MSG-21 |
+| Vượt số tin của công ty chưa xác minh | MSG-22 |
+| Tin đang được kiểm duyệt viên khác xử lý | MSG-24 |
+| Tin bị khoá sau 3 lần từ chối | MSG-27 |
+| Lưu nháp, gửi duyệt thất bại | Thông báo lỗi chung của app (ngoài bộ MSG của SRS này), cho thử lại; giữ nội dung đã soạn |
 
 ## 9. Danh sách thông báo
 

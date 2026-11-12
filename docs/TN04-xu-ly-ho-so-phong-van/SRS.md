@@ -187,14 +187,14 @@ flowchart TD
 
 ## 6. Điểm vào
 
-| **Điểm vào** | **Dẫn tới** | **Ghi chú** |
-| --- | --- | --- |
-| "Xem ứng viên" ở **SCR-N02** | UC-12, **SCR-N04** | |
-| Email tóm tắt đơn mới chưa xem | **SCR-N04** lọc cột Mới | BR-47 |
-| Nút Mời phỏng vấn ở **SCR-N05** | UC-14 | |
-| Thông báo "Ứng viên đã chọn giờ / xin đổi / chưa trả lời" | **SCR-N05** của đơn | |
-| Thông báo lời mời (App ứng viên) | UC-15, **SCR-U09** | |
-| Nhắc lịch | **SCR-U09**, **SCR-N05** | BR-45 |
+| **Điểm vào** | **Nền tảng** | **Dẫn tới** | **Ghi chú** |
+| --- | --- | --- | --- |
+| "Xem ứng viên" ở **SCR-N02** | Web nhà tuyển dụng | UC-12, **SCR-N04** |  |
+| Email tóm tắt đơn mới chưa xem | Web nhà tuyển dụng | **SCR-N04** lọc cột Mới | BR-47 |
+| Nút Mời phỏng vấn ở **SCR-N05** | Web nhà tuyển dụng | UC-14 |  |
+| Thông báo "Ứng viên đã chọn giờ / xin đổi / chưa trả lời" | Web nhà tuyển dụng | **SCR-N05** của đơn |  |
+| Thông báo lời mời (App ứng viên) | App ứng viên | UC-15, **SCR-U09** |  |
+| Nhắc lịch | App ứng viên · Web nhà tuyển dụng | **SCR-U09**, **SCR-N05** | BR-45 |
 
 ## 7. Mô tả màn hình
 
@@ -281,6 +281,17 @@ sequenceDiagram
   S->>U: Nhắc trước 24 giờ, 2 giờ
   S->>N: Email nhắc trước 24 giờ, 2 giờ
 ```
+
+**Map lỗi → thông báo** `[giả định]`
+
+| **Nhóm lỗi** | **Message** |
+| --- | --- |
+| Vượt giới hạn tải CV trong ngày | MSG-31 |
+| Khung giờ cách hiện tại dưới 24 giờ | MSG-34 |
+| Các khung giờ trùng nhau | MSG-35 |
+| Link họp không hợp lệ | MSG-36 |
+| Khung giờ đã qua hoặc lời mời hết hạn | MSG-38 |
+| Mất mạng, lỗi máy chủ | Thông báo lỗi chung của app (ngoài bộ MSG của SRS này), cho thử lại |
 
 ## 9. Danh sách thông báo
 
