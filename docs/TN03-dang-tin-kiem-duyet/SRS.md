@@ -250,7 +250,7 @@ flowchart TD
 | **Bước** | **Actor** | **Mô tả** |
 | --- | --- | --- |
 | 1 | Ứng viên | Gửi báo cáo tin (SRS TN02) |
-| 2 | Hệ thống | Đưa báo cáo vào hàng đợi **SCR-A03**, ưu tiên cao |
+| 2 | Hệ thống | Dưới 3 báo cáo trong 24 giờ: tin giữ `DANG_HIEN`. Đưa báo cáo vào hàng đợi **SCR-A03**, ưu tiên cao |
 | 3 | Kiểm duyệt viên | Xem tin, các báo cáo, lịch sử công ty |
 | 4 | Kiểm duyệt viên | Chọn quyết định: Giữ tin, Gỡ tin, hoặc Gỡ tin và khoá công ty |
 | 5 | Hệ thống | Xử lý tin, công ty theo BR-34 |

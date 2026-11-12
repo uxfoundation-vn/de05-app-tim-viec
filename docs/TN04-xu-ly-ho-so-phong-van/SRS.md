@@ -270,7 +270,7 @@ flowchart TD
 | 1 | Ứng viên | Mở lời mời từ thông báo hoặc **SCR-U09** |
 | 2 | Hệ thống | Hiện công ty, vị trí, hình thức, địa điểm hoặc link, các khung giờ |
 | 3 | Ứng viên | Chọn một khung giờ |
-| 4 | Hệ thống | Gọi \[InterviewRespond\]; khung còn hợp lệ (BR-44) → lời mời `DA_CHOT` |
+| 4 | Hệ thống | Gọi \[InterviewRespond\] `SELECT`; khung còn hợp lệ (BR-44) → lời mời `DA_CHOT` |
 | 5 | Hệ thống | Báo nhà tuyển dụng; hiện nút Thêm vào lịch; lên lịch nhắc 24 giờ và 2 giờ (BR-45) |
 
 **Luồng thay thế**
