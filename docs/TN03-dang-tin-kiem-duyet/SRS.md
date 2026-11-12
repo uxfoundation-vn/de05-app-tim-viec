@@ -41,7 +41,7 @@
 | BR-31 | **Sửa tin đang hiện**: đổi chức danh, lương, mô tả, yêu cầu, địa chỉ → bản sửa vào duyệt, bản cũ vẫn hiện tới khi bản sửa được duyệt. Đổi hạn nộp, số lượng → áp dụng ngay |
 | BR-32 | **Đóng, mở lại**: đóng chủ động hoặc hết hạn → `DA_DONG`. Mở lại trong 30 ngày → `DANG_HIEN` với hạn nộp mới; quá 30 ngày → phải gửi duyệt lại |
 | BR-33 | **Báo cáo vi phạm**: lý do Lừa đảo, Sai thông tin, Nội dung không phù hợp, Khác. ≥ 3 báo cáo từ 3 ứng viên khác nhau trong 24 giờ → tin `TAM_AN` |
-| BR-34 | **Xử lý báo cáo**: `GIU_TIN` → bỏ `TAM_AN`; `GO_TIN` → tin `BI_GO`, mọi đơn đang chờ chuyển `TIN_DA_DONG`; `GO_VA_KHOA` → thêm khoá công ty, mọi tin của công ty bị gỡ |
+| BR-34 | **Xử lý báo cáo**: `GIU_TIN` → bỏ `TAM_AN`; `GO_TIN` → tin `BI_GO`, mọi đơn đang chờ (`DA_GUI`, `DA_XEM`, `MOI_PHONG_VAN`) chuyển `TIN_DA_DONG`, lịch phỏng vấn chưa diễn ra bị huỷ và ứng viên được báo lý do gỡ tin `[giả định]`; `GO_VA_KHOA` → thêm khoá công ty, mọi tin của công ty bị gỡ |
 | BR-35 | Mọi quyết định của kiểm duyệt viên ghi nhật ký: ai, lúc nào, quyết định, lý do |
 
 ## 4. Trạng thái

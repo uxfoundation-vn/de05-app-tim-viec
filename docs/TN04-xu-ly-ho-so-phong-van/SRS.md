@@ -37,11 +37,11 @@
 | BR-40 | **Liên hệ và CV** chỉ hiện với đơn khác `DA_RUT`. Mỗi lần tải CV ghi nhật ký; tối đa 200 lượt tải mỗi ngày mỗi công ty `[giả định]` |
 | BR-41 | **Ghi chú nội bộ** ≤ 1.000 ký tự mỗi ghi chú, nhiều ghi chú theo thời gian; **sao** 0–1. Cả hai không bao giờ trả về cho App ứng viên |
 | BR-42 | **Lời mời phỏng vấn**: hình thức `TRUC_TIEP` (địa chỉ, người liên hệ, số điện thoại) hoặc `ONLINE` (link họp hợp lệ); 1–3 khung giờ, thời lượng 15–120 phút; khung sớm nhất ≥ 24 giờ từ lúc gửi; các khung không trùng nhau |
-| BR-43 | **Trả lời lời mời**: ứng viên chọn 1 khung → lịch `DA_CHOT`; xin đổi (tối đa 1 lần) kèm ghi chú ≤ 200 ký tự → `XIN_DOI`; từ chối → đơn `CHUA_PHU_HOP` lý do "Ứng viên từ chối phỏng vấn". Quá 48 giờ không trả lời → `QUA_HAN`, báo nhà tuyển dụng |
+| BR-43 | **Trả lời lời mời**: ứng viên chọn 1 khung → lịch `DA_CHOT`; xin đổi (tối đa 1 lần) kèm ghi chú ≤ 200 ký tự → `XIN_DOI`; từ chối → đơn `CHUA_PHU_HOP` lý do "Ứng viên từ chối phỏng vấn". Quá 48 giờ không trả lời → `QUA_HAN`, báo nhà tuyển dụng. Lịch đã `DA_CHOT`, trước giờ bắt đầu ≥ 2 giờ: ứng viên vẫn xin đổi được (nếu chưa dùng lượt đổi) hoặc từ chối `[giả định]`. Lời mời `XIN_DOI` mà nhà tuyển dụng không gửi khung mới trong 72 giờ → nhắc nhà tuyển dụng ở giờ thứ 48, hết 72 giờ chuyển `QUA_HAN`, đơn giữ `MOI_PHONG_VAN` `[giả định]` |
 | BR-44 | **Khung giờ đã chọn** không còn hợp lệ nếu đã qua; ứng viên mở lời mời khi mọi khung đã qua → lời mời `QUA_HAN` |
 | BR-45 | **Nhắc lịch** gửi cả hai bên 24 giờ và 2 giờ trước giờ bắt đầu, qua thông báo đẩy (ứng viên) và email (cả hai) |
 | BR-46 | **Đổi, huỷ lịch đã chốt** bởi nhà tuyển dụng: bắt buộc lý do; đổi → gửi lời mời mới (BR-42) thay lời mời cũ; huỷ → đơn về `DA_XEM` |
-| BR-47 | **Kết quả** `CHUA_PHU_HOP` bắt buộc lời nhắn (mẫu hoặc tự soạn, 20–1.000 ký tự). `DA_NHAN` có lời nhắn tuỳ chọn. Đổi kết quả đã gửi → hỏi xác nhận, ứng viên nhận thông báo mới. Nhắc nhà tuyển dụng qua email hằng ngày khi có đơn `DA_GUI` quá 3 ngày |
+| BR-47 | **Kết quả** `CHUA_PHU_HOP` bắt buộc lời nhắn (mẫu hoặc tự soạn, 20–1.000 ký tự). `DA_NHAN` có lời nhắn tuỳ chọn. Lịch `DA_DIEN_RA` có thêm lựa chọn "Ứng viên không đến" → đơn `CHUA_PHU_HOP` với lý do "Không tham gia phỏng vấn", không bắt buộc lời nhắn `[giả định]`. Đổi kết quả đã gửi → hỏi xác nhận, ứng viên nhận thông báo mới. Nhắc nhà tuyển dụng qua email hằng ngày khi có đơn `DA_GUI` quá 3 ngày |
 
 ## 4. Trạng thái
 
@@ -55,6 +55,9 @@ stateDiagram-v2
   CHO_UNG_VIEN --> UNG_VIEN_TU_CHOI : Ứng viên từ chối
   CHO_UNG_VIEN --> QUA_HAN : 48 giờ hoặc mọi khung đã qua
   XIN_DOI --> THAY_THE : Nhà tuyển dụng gửi khung mới
+  XIN_DOI --> QUA_HAN : Nhà tuyển dụng không phản hồi 72 giờ
+  DA_CHOT --> XIN_DOI : Ứng viên xin đổi, trước giờ hẹn ≥ 2 giờ
+  DA_CHOT --> UNG_VIEN_TU_CHOI : Ứng viên từ chối, trước giờ hẹn ≥ 2 giờ
   QUA_HAN --> THAY_THE : Nhà tuyển dụng gửi lại
   DA_CHOT --> THAY_THE : Nhà tuyển dụng đổi lịch
   DA_CHOT --> DA_HUY : Nhà tuyển dụng huỷ
@@ -71,9 +74,9 @@ stateDiagram-v2
 | --- | --- | --- |
 | `CHO_UNG_VIEN` | "Chờ ứng viên chọn giờ · còn {h} giờ" | Lời mời, các khung giờ, nút Chọn, Xin đổi, Từ chối |
 | `XIN_DOI` | "Ứng viên xin đổi: {ghi chú}", nút Gửi khung mới | "Đã gửi yêu cầu đổi, chờ phản hồi" |
-| `QUA_HAN` | "Ứng viên chưa trả lời", nút Gửi lại | "Lời mời đã hết hạn" |
-| `DA_CHOT` | Lịch phỏng vấn, nút Đổi, Huỷ | Lịch, địa chỉ hoặc link, nút Thêm vào lịch |
-| `DA_DIEN_RA` | Nút chọn kết quả | "Đã phỏng vấn · Chờ kết quả" |
+| `QUA_HAN` | "Ứng viên chưa trả lời" hoặc "Bạn chưa gửi khung giờ mới", nút Gửi lại | "Lời mời đã hết hạn" |
+| `DA_CHOT` | Lịch phỏng vấn, nút Đổi, Huỷ | Lịch, địa chỉ hoặc link, nút Thêm vào lịch; nút Xin đổi, Từ chối tới trước giờ hẹn 2 giờ |
+| `DA_DIEN_RA` | Nút chọn kết quả: Đã nhận, Chưa phù hợp, Ứng viên không đến | "Đã phỏng vấn · Chờ kết quả" |
 
 ## 5. Use Case
 

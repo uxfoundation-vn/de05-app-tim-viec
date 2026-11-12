@@ -57,7 +57,10 @@ stateDiagram-v2
   DA_XEM --> CHUA_PHU_HOP : Từ chối, TN04
   DA_GUI --> CHUA_PHU_HOP : Từ chối, TN04
   MOI_PHONG_VAN --> DA_NHAN : Nhận, TN04
-  MOI_PHONG_VAN --> CHUA_PHU_HOP : Từ chối sau phỏng vấn, TN04
+  MOI_PHONG_VAN --> CHUA_PHU_HOP : Từ chối sau phỏng vấn, ứng viên từ chối hoặc không đến, TN04
+  MOI_PHONG_VAN --> DA_XEM : Nhà tuyển dụng huỷ lịch, BR-46
+  CHUA_PHU_HOP --> DA_XEM : Mở lại trong 30 ngày, BR-38
+  MOI_PHONG_VAN --> TIN_DA_DONG : Tin bị gỡ do vi phạm, BR-34
   DA_GUI --> TIN_DA_DONG : Tin đóng
   DA_XEM --> TIN_DA_DONG : Tin đóng
   DA_RUT --> [*]
@@ -70,7 +73,7 @@ stateDiagram-v2
 | --- | --- | --- |
 | `DA_GUI` | "Đã gửi {ngày}"; sau 14 ngày thêm MSG-16 | Có |
 | `DA_XEM` | "Nhà tuyển dụng đã xem hồ sơ" | Có |
-| `MOI_PHONG_VAN` | "Được mời phỏng vấn" + lịch (SRS TN04) | Không, huỷ lịch theo TN04 |
+| `MOI_PHONG_VAN` | "Được mời phỏng vấn" + lịch (SRS TN04) | Không; xin đổi hoặc từ chối lịch theo SRS TN04, BR-43 |
 | `DA_NHAN` | "Chúc mừng! Bạn đã được nhận" | Không |
 | `CHUA_PHU_HOP` | "Chưa phù hợp lần này" + lời nhắn của nhà tuyển dụng nếu có | Không |
 | `DA_RUT` | "Bạn đã rút đơn" | – |
@@ -202,7 +205,7 @@ flowchart TD
   F -->|Rút| G["ApplicationWithdraw"]
   G --> H["DA_RUT, nhà tuyển dụng mất quyền xem liên hệ"]
   F -->|Huỷ| C
-  I["Trạng thái đổi ở TN04"] --> J["Thông báo đẩy MSG-19"]
+  I["Trạng thái đổi ở TN04"] --> J["Thông báo đẩy MSG-43"]
   J --> C
 ```
 
@@ -230,6 +233,21 @@ flowchart TD
 | 6 | Thẻ tin | List item | Chức danh, logo, tên công ty, nhãn xác minh, lương (hoặc "Thoả thuận"), khu vực, hình thức, "{n} ngày trước", nút lưu |
 | 7 | Gợi ý cho bạn | Section | BR-16; chỉ khi chưa nhập từ khoá |
 | 8 | Màn trống | Empty state | MSG-09 |
+
+### SCR-U05 Bộ lọc (bottom sheet toàn màn)
+
+| **#** | **Thành phần** | **Loại** | **Hành vi** |
+| --- | --- | --- | --- |
+| 1 | Mức lương | Thanh kéo hai đầu | Khoảng triệu/tháng (BR-14) |
+| 2 | Có ghi mức lương | Toggle | Bật → chỉ hiện tin có ghi lương |
+| 3 | Kinh nghiệm | Chips chọn nhiều | Chưa có, Dưới 1 năm, 1–3, 3–5, Trên 5 |
+| 4 | Hình thức | Chips chọn nhiều | Theo hình thức làm việc của tin |
+| 5 | Ngành | Danh sách chọn nhiều, có ô tìm | Hiện số ngành đã chọn |
+| 6 | Ngày đăng | Chips chọn một | 24 giờ, 7 ngày, 30 ngày |
+| 7 | Xoá tất cả | Button text | Bỏ mọi lựa chọn, chỉ bật khi có bộ lọc đang dùng |
+| 8 | "Xem {n} việc" | Button | Số kết quả cập nhật sau mỗi lựa chọn; n = 0 → "Không có việc phù hợp", vẫn bấm được để về **SCR-U04** với MSG-09 `[giả định]` |
+
+Đóng **SCR-U05** bằng vuốt xuống hoặc ✕ thì không áp dụng thay đổi. Trong một nhóm là HOẶC, giữa các nhóm là VÀ (BR-14).
 
 ### SCR-U06 Chi tiết tin
 
@@ -294,7 +312,7 @@ sequenceDiagram
   end
   Note over API,N: Sau này nhà tuyển dụng đổi trạng thái
   N->>API: Đổi trạng thái đơn
-  API->>App: Thông báo MSG-19
+  API->>App: Thông báo MSG-43
 ```
 
 ## 9. Danh sách thông báo
@@ -311,7 +329,7 @@ sequenceDiagram
 | MSG-16 | Ghi chú đơn | Nhà tuyển dụng chưa phản hồi sau 14 ngày. Bạn có thể tiếp tục ứng tuyển các việc khác |
 | MSG-17 | Màn thành công | Đã gửi đơn tới {công ty}. Bạn sẽ nhận thông báo khi có cập nhật. \[Xem đơn\] \[Tìm việc khác\] |
 | MSG-18 | Popup | Rút đơn ứng tuyển {chức danh}? Bạn không thể ứng tuyển lại tin này trong 30 ngày. \[Giữ đơn\] \[Rút đơn\] |
-| MSG-19 | Thông báo đẩy | {Công ty}: đơn {chức danh} của bạn đã chuyển sang "{trạng thái}" |
+| MSG-43 | Thông báo đẩy | {Công ty}: đơn {chức danh} của bạn đã chuyển sang "{trạng thái}" |
 
 Bản EN: `[chờ bổ sung]`.
 
