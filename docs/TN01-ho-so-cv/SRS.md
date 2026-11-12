@@ -194,6 +194,34 @@ flowchart TD
   L -->|Xoá CV mặc định| M["Chọn CV khác làm mặc định nếu còn"]
 ```
 
+**Luồng chính**
+
+| **Bước** | **Actor** | **Mô tả** |
+| --- | --- | --- |
+| 1 | Ứng viên | Mở **SCR-U03**, bấm Tải lên |
+| 2 | Ứng viên | Chọn file từ điện thoại hoặc Google Drive |
+| 3 | Hệ thống | Kiểm tra PDF, DOCX và ≤ 5 MB |
+| 4 | Hệ thống | Tải lên (`DANG_TAI_LEN`), rồi quét an toàn (`DANG_QUET`) |
+| 5 | Hệ thống | File sạch → CV `SAN_SANG` |
+| 6 | Hệ thống | CV đầu tiên → tự đặt làm mặc định |
+
+**Luồng thay thế**
+
+| **Mã** | **Điều kiện** | **Xử lý** |
+| --- | --- | --- |
+| A1 | Đã đủ 3 CV | Nút Tải lên disabled |
+| A2 | Không phải CV đầu tiên | Giữ CV mặc định cũ |
+| A3 | Thao tác trên CV có sẵn | Xem trước, đổi tên, đặt mặc định, xoá |
+| A4 | Xoá CV mặc định | Bắt chọn CV khác làm mặc định nếu còn |
+
+**Luồng lỗi**
+
+| **Mã** | **Điều kiện** | **Xử lý** |
+| --- | --- | --- |
+| E1 | Sai định dạng hoặc quá dung lượng | MSG-06, không tải lên |
+| E2 | File bị đánh dấu không an toàn | CV `BI_TU_CHOI`, MSG-05 |
+| E3 | Tải lên thất bại giữa chừng | MSG-03, cho thử lại |
+
 ### UC-04 Chọn chế độ hiển thị và chặn công ty
 
 | **Mục** | **Nội dung** |
@@ -213,6 +241,29 @@ flowchart TD
   H -->|Có| I["Thêm vào danh sách chặn BR-10"]
   H -->|Không| J["Báo đã đủ 20"]
 ```
+
+**Luồng chính**
+
+| **Bước** | **Actor** | **Mô tả** |
+| --- | --- | --- |
+| 1 | Ứng viên | Hồ sơ → Quyền riêng tư |
+| 2 | Ứng viên | Chọn chế độ "Cho tìm thấy" |
+| 3 | Hệ thống | Hiện MSG-08 giải thích, chờ xác nhận |
+| 4 | Hệ thống | Lưu; hồ sơ hiện trong tìm kiếm của nhà tuyển dụng, thông tin liên hệ vẫn ẩn (BR-09) |
+
+**Luồng thay thế**
+
+| **Mã** | **Điều kiện** | **Xử lý** |
+| --- | --- | --- |
+| A1 | Chọn "Chỉ khi ứng tuyển" | Ẩn hồ sơ khỏi tìm kiếm của nhà tuyển dụng, áp dụng ngay |
+| A2 | Chặn công ty | Tìm công ty theo tên → thêm vào danh sách chặn (BR-10) |
+
+**Luồng lỗi**
+
+| **Mã** | **Điều kiện** | **Xử lý** |
+| --- | --- | --- |
+| E1 | Danh sách chặn đã đủ 20 công ty | Báo đã đủ, không thêm |
+| E2 | Lưu thất bại | MSG-03, giữ lựa chọn cũ |
 
 ## 6. Điểm vào
 
@@ -297,7 +348,7 @@ sequenceDiagram
   end
 ```
 
-**Map lỗi → thông báo** `[giả định]`
+**Map lỗi → thông báo**
 
 | **Nhóm lỗi** | **Message** |
 | --- | --- |
@@ -328,5 +379,6 @@ Bản EN: `[chờ bổ sung]`.
 | Hiệu năng | **SCR-U01** hiện ≤ 1,5 giây; lưu phần ≤ 1 giây; quét CV ≤ 30 giây |
 | Bảo mật | CV lưu mã hoá; link tải CV có thời hạn 10 phút, chỉ cấp cho nhà tuyển dụng có quyền (BR-09, BR-10) |
 | Quyền riêng tư | Ứng viên xoá được tài khoản và toàn bộ hồ sơ, CV; đơn đã gửi chỉ giữ bản ẩn danh hoá `[cần chốt]` |
+| Log / audit | Mỗi lần tải, xoá, đổi CV mặc định; mỗi lần đổi cài đặt quyền riêng tư (giá trị cũ, mới, thời điểm) |
 | Tracking | Bắt đầu và xong onboarding, lưu từng phần, độ hoàn thiện, chạm gợi ý, tải CV (kết quả), đổi chế độ hiển thị, chặn công ty |
 | Accessibility | Lỗi inline đọc được bằng trình đọc màn hình; thanh bước có nhãn "Bước {x} trên 2"; hỗ trợ cỡ chữ hệ thống |

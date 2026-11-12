@@ -41,7 +41,7 @@
 | BR-31 | **Sửa tin đang hiện**: đổi chức danh, lương, mô tả, yêu cầu, địa chỉ → bản sửa vào duyệt, bản cũ vẫn hiện tới khi bản sửa được duyệt. Đổi hạn nộp, số lượng → áp dụng ngay |
 | BR-32 | **Đóng, mở lại**: đóng chủ động hoặc hết hạn → `DA_DONG`. Mở lại trong 30 ngày → `DANG_HIEN` với hạn nộp mới; quá 30 ngày → phải gửi duyệt lại |
 | BR-33 | **Báo cáo vi phạm**: lý do Lừa đảo, Sai thông tin, Nội dung không phù hợp, Khác. ≥ 3 báo cáo từ 3 ứng viên khác nhau trong 24 giờ → tin `TAM_AN` |
-| BR-34 | **Xử lý báo cáo**: `GIU_TIN` → bỏ `TAM_AN`; `GO_TIN` → tin `BI_GO`, mọi đơn đang chờ (`DA_GUI`, `DA_XEM`, `MOI_PHONG_VAN`) chuyển `TIN_DA_DONG`, lịch phỏng vấn chưa diễn ra bị huỷ và ứng viên được báo lý do gỡ tin `[giả định]`; `GO_VA_KHOA` → thêm khoá công ty, mọi tin của công ty bị gỡ |
+| BR-34 | **Xử lý báo cáo**: `GIU_TIN` → bỏ `TAM_AN`; `GO_TIN` → tin `BI_GO`, mọi đơn đang chờ (`DA_GUI`, `DA_XEM`, `MOI_PHONG_VAN`) chuyển `TIN_DA_DONG`, lịch phỏng vấn chưa diễn ra bị huỷ và ứng viên được báo lý do gỡ tin; `GO_VA_KHOA` → thêm khoá công ty, mọi tin của công ty bị gỡ |
 | BR-35 | Mọi quyết định của kiểm duyệt viên ghi nhật ký: ai, lúc nào, quyết định, lý do |
 
 ## 4. Trạng thái
@@ -112,6 +112,30 @@ flowchart TD
   K -->|Không khớp, ảnh mờ| L["BI_TU_CHOI, lý do, MSG-21"]
   L --> B
 ```
+
+**Luồng chính**
+
+| **Bước** | **Actor** | **Mô tả** |
+| --- | --- | --- |
+| 1 | Nhà tuyển dụng | Ở **SCR-N01**, chọn xác minh bằng email tên miền |
+| 2 | Nhà tuyển dụng | Nhập email công ty |
+| 3 | Hệ thống | Kiểm tra tên miền khớp website công ty; gửi link xác nhận |
+| 4 | Nhà tuyển dụng | Bấm link trong 24 giờ |
+| 5 | Hệ thống | Công ty `DA_XAC_MINH`, MSG-20 |
+
+**Luồng thay thế**
+
+| **Mã** | **Điều kiện** | **Xử lý** |
+| --- | --- | --- |
+| A1 | Chọn xác minh bằng giấy phép kinh doanh | Tải ảnh giấy phép → công ty `DANG_XET`, vào hàng đợi quản trị → kiểm duyệt viên xét khớp tên, mã số thuế → `DA_XAC_MINH` |
+| A2 | Không bấm link trong 24 giờ | Link hết hạn, cho gửi lại |
+
+**Luồng lỗi**
+
+| **Mã** | **Điều kiện** | **Xử lý** |
+| --- | --- | --- |
+| E1 | Tên miền email không khớp website | MSG-19 |
+| E2 | Giấy phép không khớp hoặc ảnh mờ | Công ty `BI_TU_CHOI` kèm lý do, MSG-21; cho xác minh lại |
 
 ### UC-09 Soạn và gửi tin
 
@@ -220,6 +244,26 @@ flowchart TD
   H --> L["MSG-30 cho người báo cáo"]
   K --> L
 ```
+
+**Luồng chính**
+
+| **Bước** | **Actor** | **Mô tả** |
+| --- | --- | --- |
+| 1 | Ứng viên | Gửi báo cáo tin (SRS TN02) |
+| 2 | Hệ thống | Đưa báo cáo vào hàng đợi **SCR-A03**, ưu tiên cao |
+| 3 | Kiểm duyệt viên | Xem tin, các báo cáo, lịch sử công ty |
+| 4 | Kiểm duyệt viên | Chọn quyết định: Giữ tin, Gỡ tin, hoặc Gỡ tin và khoá công ty |
+| 5 | Hệ thống | Xử lý tin, công ty theo BR-34 |
+| 6 | Hệ thống | Nhà tuyển dụng nhận MSG-28 khi tin bị gỡ; người báo cáo nhận MSG-30 |
+
+**Luồng thay thế**
+
+| **Mã** | **Điều kiện** | **Xử lý** |
+| --- | --- | --- |
+| A1 | ≥ 3 báo cáo trong 24 giờ | Tin tự `TAM_AN`, ẩn khỏi tìm kiếm trong lúc chờ xét |
+| A2 | Quyết định Giữ tin | Bỏ `TAM_AN` nếu có |
+| A3 | Quyết định Gỡ tin | Tin `BI_GO`; đơn đang chờ thành `TIN_DA_DONG` |
+| A4 | Quyết định Gỡ và khoá công ty | Khoá công ty, gỡ mọi tin của công ty |
 
 ## 6. Điểm vào
 
@@ -330,7 +374,7 @@ sequenceDiagram
   end
 ```
 
-**Map lỗi → thông báo** `[giả định]`
+**Map lỗi → thông báo**
 
 | **Nhóm lỗi** | **Message** |
 | --- | --- |

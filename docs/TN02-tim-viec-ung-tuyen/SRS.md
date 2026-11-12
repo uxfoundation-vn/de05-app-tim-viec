@@ -209,6 +209,33 @@ flowchart TD
   J --> C
 ```
 
+**Luồng chính**
+
+| **Bước** | **Actor** | **Mô tả** |
+| --- | --- | --- |
+| 1 | Ứng viên | Tab Việc của tôi → Đã ứng tuyển (**SCR-U08**) |
+| 2 | Hệ thống | Hiện danh sách đơn, nhóm theo trạng thái |
+| 3 | Ứng viên | Chạm một đơn → **SCR-U09** |
+| 4 | Ứng viên | Đơn `DA_GUI` hoặc `DA_XEM`: bấm Rút đơn |
+| 5 | Hệ thống | MSG-18 hỏi xác nhận |
+| 6 | Ứng viên | Chọn Rút |
+| 7 | Hệ thống | Gọi \[ApplicationWithdraw\]; đơn `DA_RUT`, nhà tuyển dụng mất quyền xem liên hệ |
+
+**Luồng thay thế**
+
+| **Mã** | **Điều kiện** | **Xử lý** |
+| --- | --- | --- |
+| A1 | Đơn `DA_GUI` quá 14 ngày | Hiện ghi chú MSG-16 |
+| A2 | Đơn `MOI_PHONG_VAN` | Hiện lịch phỏng vấn và các nút trả lời (SRS TN04); không có nút Rút đơn |
+| A3 | Chọn Huỷ ở MSG-18 | Ở lại **SCR-U09**, đơn không đổi |
+| A4 | Trạng thái đơn đổi (SRS TN04) | Thông báo đẩy MSG-43; chạm mở **SCR-U09** |
+
+**Luồng lỗi**
+
+| **Mã** | **Điều kiện** | **Xử lý** |
+| --- | --- | --- |
+| E1 | Rút đơn thất bại (mất mạng, đơn vừa đổi trạng thái) | Báo lỗi, tải lại trạng thái đơn mới nhất |
+
 ## 6. Điểm vào
 
 | **Điểm vào** | **Nền tảng** | **Dẫn tới** | **Ghi chú** |
@@ -245,7 +272,7 @@ flowchart TD
 | 5 | Ngành | Danh sách chọn nhiều, có ô tìm | Hiện số ngành đã chọn |
 | 6 | Ngày đăng | Chips chọn một | 24 giờ, 7 ngày, 30 ngày |
 | 7 | Xoá tất cả | Button text | Bỏ mọi lựa chọn, chỉ bật khi có bộ lọc đang dùng |
-| 8 | "Xem {n} việc" | Button | Số kết quả cập nhật sau mỗi lựa chọn; n = 0 → "Không có việc phù hợp", vẫn bấm được để về **SCR-U04** với MSG-09 `[giả định]` |
+| 8 | "Xem {n} việc" | Button | Số kết quả cập nhật sau mỗi lựa chọn; n = 0 → "Không có việc phù hợp", vẫn bấm được để về **SCR-U04** với MSG-09 |
 
 Đóng **SCR-U05** bằng vuốt xuống hoặc ✕ thì không áp dụng thay đổi. Trong một nhóm là HOẶC, giữa các nhóm là VÀ (BR-14).
 
@@ -315,7 +342,7 @@ sequenceDiagram
   API->>App: Thông báo MSG-43
 ```
 
-**Map lỗi → thông báo** `[giả định]`
+**Map lỗi → thông báo**
 
 | **Nhóm lỗi** | **Message** |
 | --- | --- |
@@ -352,5 +379,6 @@ Bản EN: `[chờ bổ sung]`.
 | Tính nhất quán | Tin bị gỡ, đóng biến mất khỏi kết quả tìm kiếm ≤ 1 phút |
 | Bảo mật | Liên hệ ứng viên chỉ trả về cho nhà tuyển dụng có đơn hợp lệ (không `DA_RUT`) |
 | Chống lạm dụng | Giới hạn 20 đơn mỗi ngày; giới hạn tốc độ tìm kiếm theo thiết bị |
+| Log / audit | Mỗi đơn: thời điểm gửi, CV đã dùng, từng lần đổi trạng thái; mỗi báo cáo tin: người báo, lý do, thời điểm |
 | Tracking | Tìm (từ khoá, bộ lọc, số kết quả), xem tin, lưu, báo cáo, bắt đầu và gửi đơn, rút đơn, mở thông báo |
 | Accessibility | Nhãn trạng thái có chữ và biểu tượng; thẻ tin đọc đủ chức danh, công ty, lương, khu vực; bộ lọc thao tác được bằng trình đọc màn hình |

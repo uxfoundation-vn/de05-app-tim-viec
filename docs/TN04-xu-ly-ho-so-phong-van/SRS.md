@@ -37,11 +37,11 @@
 | BR-40 | **Liên hệ và CV** chỉ hiện với đơn khác `DA_RUT`. Mỗi lần tải CV ghi nhật ký; tối đa 200 lượt tải mỗi ngày mỗi công ty `[giả định]` |
 | BR-41 | **Ghi chú nội bộ** ≤ 1.000 ký tự mỗi ghi chú, nhiều ghi chú theo thời gian; **sao** 0–1. Cả hai không bao giờ trả về cho App ứng viên |
 | BR-42 | **Lời mời phỏng vấn**: hình thức `TRUC_TIEP` (địa chỉ, người liên hệ, số điện thoại) hoặc `ONLINE` (link họp hợp lệ); 1–3 khung giờ, thời lượng 15–120 phút; khung sớm nhất ≥ 24 giờ từ lúc gửi; các khung không trùng nhau |
-| BR-43 | **Trả lời lời mời**: ứng viên chọn 1 khung → lịch `DA_CHOT`; xin đổi (tối đa 1 lần) kèm ghi chú ≤ 200 ký tự → `XIN_DOI`; từ chối → đơn `CHUA_PHU_HOP` lý do "Ứng viên từ chối phỏng vấn". Quá 48 giờ không trả lời → `QUA_HAN`, báo nhà tuyển dụng. Lịch đã `DA_CHOT`, trước giờ bắt đầu ≥ 2 giờ: ứng viên vẫn xin đổi được (nếu chưa dùng lượt đổi) hoặc từ chối `[giả định]`. Lời mời `XIN_DOI` mà nhà tuyển dụng không gửi khung mới trong 72 giờ → nhắc nhà tuyển dụng ở giờ thứ 48, hết 72 giờ chuyển `QUA_HAN`, đơn giữ `MOI_PHONG_VAN` `[giả định]` |
+| BR-43 | **Trả lời lời mời**: ứng viên chọn 1 khung → lịch `DA_CHOT`; xin đổi (tối đa 1 lần) kèm ghi chú ≤ 200 ký tự → `XIN_DOI`; từ chối → đơn `CHUA_PHU_HOP` lý do "Ứng viên từ chối phỏng vấn". Quá 48 giờ không trả lời → `QUA_HAN`, báo nhà tuyển dụng. Lịch đã `DA_CHOT`, trước giờ bắt đầu ≥ 2 giờ: ứng viên vẫn xin đổi được (nếu chưa dùng lượt đổi) hoặc từ chối. Lời mời `XIN_DOI` mà nhà tuyển dụng không gửi khung mới trong 72 giờ → nhắc nhà tuyển dụng ở giờ thứ 48, hết 72 giờ chuyển `QUA_HAN`, đơn giữ `MOI_PHONG_VAN` |
 | BR-44 | **Khung giờ đã chọn** không còn hợp lệ nếu đã qua; ứng viên mở lời mời khi mọi khung đã qua → lời mời `QUA_HAN` |
 | BR-45 | **Nhắc lịch** gửi cả hai bên 24 giờ và 2 giờ trước giờ bắt đầu, qua thông báo đẩy (ứng viên) và email (cả hai) |
 | BR-46 | **Đổi, huỷ lịch đã chốt** bởi nhà tuyển dụng: bắt buộc lý do; đổi → gửi lời mời mới (BR-42) thay lời mời cũ; huỷ → đơn về `DA_XEM` |
-| BR-47 | **Kết quả** `CHUA_PHU_HOP` bắt buộc lời nhắn (mẫu hoặc tự soạn, 20–1.000 ký tự). `DA_NHAN` có lời nhắn tuỳ chọn. Lịch `DA_DIEN_RA` có thêm lựa chọn "Ứng viên không đến" → đơn `CHUA_PHU_HOP` với lý do "Không tham gia phỏng vấn", không bắt buộc lời nhắn `[giả định]`. Đổi kết quả đã gửi → hỏi xác nhận, ứng viên nhận thông báo mới. Nhắc nhà tuyển dụng qua email hằng ngày khi có đơn `DA_GUI` quá 3 ngày |
+| BR-47 | **Kết quả** `CHUA_PHU_HOP` bắt buộc lời nhắn (mẫu hoặc tự soạn, 20–1.000 ký tự). `DA_NHAN` có lời nhắn tuỳ chọn. Lịch `DA_DIEN_RA` có thêm lựa chọn "Ứng viên không đến" → đơn `CHUA_PHU_HOP` với lý do "Không tham gia phỏng vấn", không bắt buộc lời nhắn. Đổi kết quả đã gửi → hỏi xác nhận, ứng viên nhận thông báo mới. Nhắc nhà tuyển dụng qua email hằng ngày khi có đơn `DA_GUI` quá 3 ngày |
 
 ## 4. Trạng thái
 
@@ -108,6 +108,33 @@ flowchart TD
   J -->|Chưa phù hợp| N["UC-13"]
 ```
 
+**Luồng chính**
+
+| **Bước** | **Actor** | **Mô tả** |
+| --- | --- | --- |
+| 1 | Nhà tuyển dụng | Ở **SCR-N02**, bấm Xem ứng viên |
+| 2 | Hệ thống | Hiện **SCR-N04** Pipeline theo cột (BR-36) |
+| 3 | Nhà tuyển dụng | Chạm một thẻ ứng viên |
+| 4 | Hệ thống | Mở **SCR-N05**; đơn `DA_GUI` tự chuyển `DA_XEM` (BR-37), ứng viên được báo |
+| 5 | Hệ thống | Hiện hồ sơ, CV, lời nhắn, liên hệ |
+| 6 | Nhà tuyển dụng | Ghi chú, gắn sao → \[NoteSave\], chỉ nhà tuyển dụng thấy |
+
+**Luồng thay thế**
+
+| **Mã** | **Điều kiện** | **Xử lý** |
+| --- | --- | --- |
+| A1 | Lọc, tìm ở pipeline | Cập nhật **SCR-N04** |
+| A2 | Đơn `DA_RUT` | Ẩn liên hệ và CV, hiện nhãn "Đã rút" |
+| A3 | Tải CV | Dưới 200 lượt trong ngày → link tải có hạn 10 phút, ghi nhật ký |
+| A4 | Chọn Mời phỏng vấn | UC-14 |
+| A5 | Chọn Chưa phù hợp | UC-13 |
+
+**Luồng lỗi**
+
+| **Mã** | **Điều kiện** | **Xử lý** |
+| --- | --- | --- |
+| E1 | Vượt 200 lượt tải CV trong ngày | MSG-31 |
+
 ### UC-13 Đổi trạng thái, báo kết quả
 
 | **Mục** | **Nội dung** |
@@ -131,6 +158,31 @@ flowchart TD
   I --> J["Ứng viên nhận MSG-39 hoặc MSG-40"]
   K["Đổi kết quả đã gửi"] --> L["MSG-33 xác nhận"] --> G
 ```
+
+**Luồng chính**
+
+| **Bước** | **Actor** | **Mô tả** |
+| --- | --- | --- |
+| 1 | Nhà tuyển dụng | Chọn 1 hoặc nhiều đơn (tối đa 50), chọn kết quả Chưa phù hợp |
+| 2 | Nhà tuyển dụng | Chọn lời nhắn mẫu, sửa nếu cần |
+| 3 | Hệ thống | Kiểm tra lời nhắn 20–1.000 ký tự; hiện MSG-32 xác nhận số đơn |
+| 4 | Nhà tuyển dụng | Xác nhận |
+| 5 | Hệ thống | Gọi \[ApplicationStatusUpdate\]; cập nhật pipeline |
+| 6 | Hệ thống | Ứng viên nhận MSG-39 |
+
+**Luồng thay thế**
+
+| **Mã** | **Điều kiện** | **Xử lý** |
+| --- | --- | --- |
+| A1 | Chọn kết quả Đã nhận | Lời nhắn tuỳ chọn; ứng viên nhận MSG-40 |
+| A2 | Đổi kết quả đã gửi | MSG-33 hỏi xác nhận rồi cập nhật; ứng viên nhận thông báo mới |
+
+**Luồng lỗi**
+
+| **Mã** | **Điều kiện** | **Xử lý** |
+| --- | --- | --- |
+| E1 | Lời nhắn sai độ dài | Lỗi inline, không cho gửi |
+| E2 | Có đơn không hợp lệ theo BR-38 | Bỏ qua đơn đó, báo số đơn bị bỏ qua; các đơn còn lại vẫn cập nhật |
 
 ### UC-14 Gửi lời mời phỏng vấn
 
@@ -159,6 +211,32 @@ flowchart TD
   J --> L["Lời mời cũ nếu có: THAY_THE"]
 ```
 
+**Luồng chính**
+
+| **Bước** | **Actor** | **Mô tả** |
+| --- | --- | --- |
+| 1 | Nhà tuyển dụng | Ở **SCR-N05**, bấm Mời phỏng vấn → **SCR-N06** |
+| 2 | Nhà tuyển dụng | Chọn hình thức: trực tiếp (địa chỉ, người liên hệ, số điện thoại) hoặc online (link họp) |
+| 3 | Nhà tuyển dụng | Chọn 1–3 khung giờ và thời lượng |
+| 4 | Hệ thống | Kiểm tra theo BR-42 |
+| 5 | Nhà tuyển dụng | Chọn lời nhắn mẫu, xem trước như ứng viên thấy, bấm Gửi |
+| 6 | Hệ thống | Gọi \[InterviewInviteCreate\]; lời mời `CHO_UNG_VIEN`, đơn `MOI_PHONG_VAN` |
+| 7 | Hệ thống | Ứng viên nhận MSG-37 |
+
+**Luồng thay thế**
+
+| **Mã** | **Điều kiện** | **Xử lý** |
+| --- | --- | --- |
+| A1 | Đơn đã có lời mời trước đó | Lời mời cũ chuyển `THAY_THE` |
+
+**Luồng lỗi**
+
+| **Mã** | **Điều kiện** | **Xử lý** |
+| --- | --- | --- |
+| E1 | Khung giờ cách hiện tại dưới 24 giờ | MSG-34, chọn lại khung |
+| E2 | Các khung giờ trùng nhau | MSG-35, chọn lại khung |
+| E3 | Link họp không hợp lệ | MSG-36, nhập lại link |
+
 ### UC-15 Ứng viên trả lời lời mời
 
 | **Mục** | **Nội dung** |
@@ -184,6 +262,32 @@ flowchart TD
   D -->|Từ chối| L["MSG-41 xác nhận"]
   L --> M["UNG_VIEN_TU_CHOI, đơn CHUA_PHU_HOP"]
 ```
+
+**Luồng chính**
+
+| **Bước** | **Actor** | **Mô tả** |
+| --- | --- | --- |
+| 1 | Ứng viên | Mở lời mời từ thông báo hoặc **SCR-U09** |
+| 2 | Hệ thống | Hiện công ty, vị trí, hình thức, địa điểm hoặc link, các khung giờ |
+| 3 | Ứng viên | Chọn một khung giờ |
+| 4 | Hệ thống | Gọi \[InterviewRespond\]; khung còn hợp lệ (BR-44) → lời mời `DA_CHOT` |
+| 5 | Hệ thống | Báo nhà tuyển dụng; hiện nút Thêm vào lịch; lên lịch nhắc 24 giờ và 2 giờ (BR-45) |
+
+**Luồng thay thế**
+
+| **Mã** | **Điều kiện** | **Xử lý** |
+| --- | --- | --- |
+| A1 | Chọn "Không khung nào phù hợp", chưa xin đổi lần nào | Ghi chú thời gian rảnh → lời mời `XIN_DOI`; nhà tuyển dụng gửi khung mới (UC-14) |
+| A2 | Đã xin đổi một lần | Ẩn nút xin đổi, gợi ý liên hệ nhà tuyển dụng |
+| A3 | Chọn Từ chối | MSG-41 hỏi xác nhận → lời mời `UNG_VIEN_TU_CHOI`, đơn `CHUA_PHU_HOP` |
+| A4 | Lịch đã `DA_CHOT`, còn ≥ 2 giờ trước giờ hẹn | Vẫn xin đổi (nếu chưa dùng lượt) hoặc từ chối được (BR-43) |
+
+**Luồng lỗi**
+
+| **Mã** | **Điều kiện** | **Xử lý** |
+| --- | --- | --- |
+| E1 | Mọi khung đã qua hoặc quá 48 giờ chưa trả lời | Lời mời `QUA_HAN`, MSG-38 |
+| E2 | Khung vừa chọn không còn hợp lệ | MSG-38, chọn khung khác |
 
 ## 6. Điểm vào
 
@@ -282,7 +386,7 @@ sequenceDiagram
   S->>N: Email nhắc trước 24 giờ, 2 giờ
 ```
 
-**Map lỗi → thông báo** `[giả định]`
+**Map lỗi → thông báo**
 
 | **Nhóm lỗi** | **Message** |
 | --- | --- |
@@ -320,5 +424,6 @@ Bản EN: `[chờ bổ sung]`.
 | Bảo mật, riêng tư | Ghi chú nội bộ và sao không có trong mọi API trả cho App ứng viên; tải CV có nhật ký |
 | Thời gian | Lưu giờ phỏng vấn kèm múi giờ; hiển thị theo múi giờ thiết bị, ghi rõ khi khác múi giờ công ty |
 | Tin cậy | Nhắc lịch gửi đúng giờ ± 5 phút; không gửi nhắc cho lịch đã huỷ hoặc đã thay thế |
+| Log / audit | Mỗi lần xem, tải CV; mỗi lần đổi trạng thái đơn (người đổi, trạng thái cũ, mới); mỗi lời mời phỏng vấn và phản hồi, kèm thời điểm |
 | Tracking | Mở pipeline, xem đơn, tải CV, ghi chú, đổi trạng thái (đơn lẻ, hàng loạt), gửi lời mời (số khung), trả lời lời mời, đổi, huỷ lịch, kết quả |
 | Accessibility | Kéo thả có thao tác thay thế (menu "Chuyển sang…"); khung giờ đọc được đầy đủ ngày, giờ, thời lượng; ghi chú nội bộ có nhãn chữ "Chỉ bạn thấy" |
