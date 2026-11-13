@@ -33,15 +33,15 @@
 | BR-11 | **Tin hiển thị**: trạng thái `DANG_HIEN` (SRS TN03), chưa hết hạn nộp; công ty không bị khoá. Tin của công ty ứng viên đã chặn vẫn hiện `[giả định]` |
 | BR-12 | **Tìm kiếm**: khớp chức danh, mô tả, kỹ năng, tên công ty; bỏ dấu, không phân biệt hoa thường; có từ điển đồng nghĩa. Gợi ý khi gõ ≥ 2 ký tự, chờ 300 ms |
 | BR-13 | **Khu vực mặc định** = khu vực làm việc đầu tiên trong `MONG_MUON`; "Toàn quốc" khi chưa có |
-| BR-14 | **Bộ lọc**: lương (khoảng, triệu/tháng), "Có ghi mức lương", kinh nghiệm (Chưa có, Dưới 1 năm, 1–3, 3–5, Trên 5), hình thức, ngành, ngày đăng (24 giờ, 7 ngày, 30 ngày). Trong một nhóm là HOẶC, giữa các nhóm là VÀ |
+| BR-14 | **Bộ lọc**: lương (khoảng, triệu/tháng), "Có ghi mức lương" (**bật sẵn mặc định**, nên tin "Thoả thuận" bị ẩn khỏi kết quả mặc định; người dùng tắt để xem cả tin này), kinh nghiệm (Chưa có, Dưới 1 năm, 1–3, 3–5, Trên 5), hình thức, ngành, ngày đăng (24 giờ, 7 ngày, 30 ngày). Trong một nhóm là HOẶC, giữa các nhóm là VÀ |
 | BR-15 | **Sắp xếp**: Phù hợp nhất (mặc định), Mới nhất, Lương cao nhất. Tin "Lương thoả thuận" xếp cuối khi sắp theo lương |
-| BR-16 | **Gợi ý việc phù hợp**: tin khớp vị trí hoặc ngành, và khu vực trong `MONG_MUON`; tối đa 20, mới nhất trước |
+| BR-16 | **Gợi ý việc phù hợp**: tin khớp vị trí hoặc ngành, và khu vực trong `MONG_MUON` của hồ sơ mặc định (TN01 BR-48); tối đa 20, mới nhất trước |
 | BR-17 | **Lưu tin** tối đa 100; vượt → MSG-11. Tin đã lưu đổi trạng thái vẫn giữ trong danh sách với nhãn tương ứng |
-| BR-18 | **Điều kiện ứng tuyển**: hồ sơ `TOI_THIEU` trở lên (BR-04); chưa ứng tuyển tin này; không trong 30 ngày sau khi rút đơn tin này; chưa quá 20 đơn trong ngày; tin `DANG_HIEN`. Tin yêu cầu CV → bắt buộc CV `SAN_SANG` |
+| BR-18 | **Điều kiện ứng tuyển**: hồ sơ `TOI_THIEU` trở lên, hoặc ứng tuyển bằng CV (họ tên, số điện thoại đã xác minh và 1 CV `SAN_SANG`, TN01 BR-04); chưa có đơn còn hiệu lực cho tin này (đơn `DA_RUT` và `TIN_DA_DONG` không tính là còn hiệu lực); không trong 30 ngày sau khi rút đơn tin này; chưa quá 20 đơn trong ngày; tin `DANG_HIEN`. Tin yêu cầu CV → bắt buộc CV `SAN_SANG` |
 | BR-19 | **Nội dung đơn**: bản chụp hồ sơ tại thời điểm gửi, CV đã chọn (bản sao), lời nhắn ≤ 500 ký tự. Sửa hồ sơ sau khi gửi không đổi đơn đã gửi |
-| BR-20 | **Gửi đơn** dùng idempotency key = user_id + job_id; bấm nhiều lần chỉ tạo 1 đơn. Gửi xong, nhà tuyển dụng thấy liên hệ của ứng viên (BR-09) |
+| BR-20 | **Gửi đơn** dùng idempotency key = user_id + job_id + số thứ tự lần ứng tuyển (bằng số đơn cũ của ứng viên cho tin này + 1); bấm nhiều lần chỉ tạo 1 đơn, còn lần ứng tuyển lại hợp lệ theo BR-18 tạo đơn mới. Đơn cũ `DA_RUT`, `TIN_DA_DONG` vẫn giữ trong lịch sử. Gửi xong, nhà tuyển dụng thấy liên hệ của ứng viên (BR-09) |
 | BR-21 | **Rút đơn** khi đơn `DA_GUI` hoặc `DA_XEM`; đơn chuyển `DA_RUT`, nhà tuyển dụng thấy nhãn "Ứng viên đã rút" và mất quyền xem liên hệ |
-| BR-22 | **Đơn chậm**: 14 ngày ở `DA_GUI` → hiện ghi chú MSG-16 (không đổi trạng thái). Tin đóng khi đơn chưa có kết quả → đơn `TIN_DA_DONG` |
+| BR-22 | **Đơn chậm**: 14 ngày ở `DA_GUI` → hiện ghi chú MSG-16 (không đổi trạng thái). **Tin đóng** (`DA_DONG`, do nhà tuyển dụng đóng hoặc hết hạn): đơn `DA_GUI`, `DA_XEM`, `MOI_PHONG_VAN` giữ nguyên trạng thái, nhà tuyển dụng vẫn xử lý được, ứng viên thấy thêm ghi chú "Tin đã ngừng nhận hồ sơ"; tin mở lại trong 30 ngày thì đơn không đổi. Hết 30 ngày tin chưa mở lại → đơn còn `DA_GUI`, `DA_XEM` chuyển `TIN_DA_DONG`; đơn `MOI_PHONG_VAN` giữ nguyên tới khi có kết quả. Tin bị gỡ → theo BR-34. Tin mở lại sau 30 ngày (duyệt lại) không khôi phục đơn `TIN_DA_DONG`; ứng viên ứng tuyển lại được (BR-18) |
 
 ## 4. Trạng thái
 
@@ -61,8 +61,11 @@ stateDiagram-v2
   MOI_PHONG_VAN --> DA_XEM : Nhà tuyển dụng huỷ lịch, BR-46
   CHUA_PHU_HOP --> DA_XEM : Mở lại trong 30 ngày, BR-38
   MOI_PHONG_VAN --> TIN_DA_DONG : Tin bị gỡ do vi phạm, BR-34
-  DA_GUI --> TIN_DA_DONG : Tin đóng
-  DA_XEM --> TIN_DA_DONG : Tin đóng
+  DA_GUI --> TIN_DA_DONG : Tin đóng quá 30 ngày hoặc bị gỡ, BR-22
+  DA_XEM --> TIN_DA_DONG : Tin đóng quá 30 ngày hoặc bị gỡ, BR-22
+  DA_NHAN --> CHUA_PHU_HOP : Đổi kết quả, BR-38
+  CHUA_PHU_HOP --> DA_NHAN : Đổi kết quả, BR-38
+  MOI_PHONG_VAN --> DA_XEM : Lời mời quá hạn, BR-43
   DA_RUT --> [*]
   CHUA_PHU_HOP --> [*]
   DA_NHAN --> [*]
@@ -77,7 +80,7 @@ stateDiagram-v2
 | `DA_NHAN` | "Chúc mừng! Bạn đã được nhận" | Không |
 | `CHUA_PHU_HOP` | "Chưa phù hợp lần này" + lời nhắn của nhà tuyển dụng nếu có | Không |
 | `DA_RUT` | "Bạn đã rút đơn" | – |
-| `TIN_DA_DONG` | "Tin đã đóng" | – |
+| `TIN_DA_DONG` | "Tin đã đóng"; tin mở lại thì ứng tuyển lại được | – |
 
 ## 5. Use Case
 
@@ -141,7 +144,7 @@ flowchart TD
 ```mermaid
 flowchart TD
   A["Bấm Ứng tuyển ở SCR-U06"] --> B{"Kiểm tra BR-18"}
-  B -->|Chưa có hồ sơ tối thiểu| C["MSG-13, mở onboarding hồ sơ TN01"]
+  B -->|Chưa có hồ sơ tối thiểu, chưa có CV| C["MSG-13: hoàn tất hồ sơ hoặc tải CV"]
   C -->|Xong| D
   B -->|Đã ứng tuyển| B1["Mở đơn hiện có"]
   B -->|Trong 30 ngày sau khi rút| B2["MSG-14"]
@@ -174,7 +177,7 @@ flowchart TD
 
 | **Mã** | **Điều kiện** | **Xử lý** |
 | --- | --- | --- |
-| A1 | Chưa có hồ sơ tối thiểu | MSG-13 → onboarding hồ sơ → quay lại bước 2 |
+| A1 | Chưa có hồ sơ tối thiểu | Đã có CV `SAN_SANG` → ứng tuyển bằng CV, **SCR-U07** chỉ hỏi họ tên nếu chưa có. Chưa có CV → MSG-13: chọn "Hoàn tất hồ sơ" (onboarding) hoặc "Ứng tuyển bằng CV" (tải CV ở **SCR-U03**) → quay lại bước 2 |
 | A2 | Tin yêu cầu CV, chưa có CV | Mở tải CV; xong quay lại bước 3 |
 | A3 | Đổi CV | Chọn trong danh sách CV `SAN_SANG` |
 | A4 | Xem hồ sơ như nhà tuyển dụng thấy | Mở xem trước (SRS TN01) |
@@ -292,8 +295,8 @@ flowchart TD
 | **#** | **Thành phần** | **Loại** | **Bắt buộc** | **Validate / hành vi** |
 | --- | --- | --- | --- | --- |
 | 1 | Tin | Header | – | Chức danh, công ty |
-| 2 | Hồ sơ | Card | – | Tóm tắt; "Xem như nhà tuyển dụng" |
-| 3 | CV | Chọn 1 | Khi tin yêu cầu | CV `SAN_SANG`; "Tải CV mới" |
+| 2 | Hồ sơ | Card / chọn 1 | – | Có nhiều hồ sơ → chọn hồ sơ gửi, mặc định là hồ sơ mặc định (TN01 BR-48); tóm tắt; "Xem như nhà tuyển dụng". Ứng tuyển bằng CV → thay bằng họ tên, số điện thoại |
+| 3 | CV | Chọn 1 | Khi tin yêu cầu, hoặc khi ứng tuyển bằng CV | CV `SAN_SANG`; "Tải CV mới" |
 | 4 | Lời nhắn | Text | Không | ≤ 500 ký tự, bộ đếm |
 | 5 | Ghi chú liên hệ | Text phụ | – | "Nhà tuyển dụng sẽ thấy số điện thoại và email của bạn" |
 | 6 | Gửi đơn | Button | – | Disabled khi thiếu CV bắt buộc; loading khi gửi |
@@ -316,7 +319,7 @@ flowchart TD
 | \[JobGet\] | job_id | Chi tiết tin, công ty, applied (bool), application_id | 3s / 1 lần |
 | \[SavedJobToggle\] | job_id, saved | – | 3s / 2 lần |
 | \[ReportCreate\] | job_id, reason, note | report_id | 5s / 2 lần |
-| \[ApplicationCreate\] | job_id, cv_id, message, idempotency_key | application_id, status `DA_GUI` | 8s / gửi lại cùng key |
+| \[ApplicationCreate\] | job_id, profile_id (rỗng khi ứng tuyển bằng CV), cv_id, message, idempotency_key | application_id, status `DA_GUI` | 8s / gửi lại cùng key |
 | \[ApplicationList\] | user_id, status, cursor | Đơn | 3s / 1 lần |
 | \[ApplicationWithdraw\] | application_id | status `DA_RUT` | 5s / 2 lần |
 
@@ -361,7 +364,7 @@ sequenceDiagram
 | MSG-10 | Banner **SCR-U06** | Tin này đã đóng nhận hồ sơ |
 | MSG-11 | Toast | Bạn đã lưu 100 tin. Bỏ lưu bớt để lưu tin mới |
 | MSG-12 | Toast | Cảm ơn bạn đã báo cáo. Chúng tôi sẽ kiểm tra tin này |
-| MSG-13 | Popup | Hoàn tất hồ sơ (2 bước, khoảng 3 phút) để ứng tuyển. \[Hoàn tất hồ sơ\] |
+| MSG-13 | Popup | Để ứng tuyển, hãy hoàn tất hồ sơ (khoảng 3 phút) hoặc tải lên CV có sẵn. \[Hoàn tất hồ sơ\] \[Ứng tuyển bằng CV\] |
 | MSG-14 | Popup | Bạn đã rút đơn tin này. Bạn có thể ứng tuyển lại từ ngày {dd/mm/yyyy} |
 | MSG-15 | Popup | Bạn đã ứng tuyển 20 việc hôm nay. Hãy quay lại vào ngày mai nhé |
 | MSG-16 | Ghi chú đơn | Nhà tuyển dụng chưa phản hồi sau 14 ngày. Bạn có thể tiếp tục ứng tuyển các việc khác |

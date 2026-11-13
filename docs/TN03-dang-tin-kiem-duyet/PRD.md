@@ -77,7 +77,7 @@ Báo cáo của ứng viên vào hàng đợi ưu tiên; nhiều báo cáo thì 
 | Xác minh công ty | Giấy phép kinh doanh (ảnh, mã số thuế) hoặc email tên miền công ty |
 | Công ty chưa xác minh | Được đăng tối đa 2 tin đang hiển thị; tin không có nhãn xác minh |
 | Trường bắt buộc | Chức danh, ngành, hình thức, số lượng, lương (khoảng, hoặc "Thoả thuận" kèm lý do), địa chỉ, mô tả ≥ 100 ký tự, yêu cầu, hạn nộp |
-| Hạn nộp | 7 đến 60 ngày từ ngày duyệt |
+| Hạn nộp | Nhà tuyển dụng chọn số ngày nhận hồ sơ, 7 đến 60 ngày; hạn nộp chính thức = ngày duyệt + số ngày đó |
 | Thời gian duyệt mục tiêu | 4 giờ làm việc |
 | Sửa tin đang hiện | Sửa lương, chức danh, mô tả → duyệt lại; sửa hạn nộp, số lượng → không cần |
 | Báo cáo | ≥ 3 báo cáo trong 24 giờ → tự tạm ẩn tin |
@@ -198,13 +198,15 @@ AC04: Ứng viên đã báo cáo nhận kết quả xử lý.
 | **Mục** | **Mô tả** | **Hướng xử lý** |
 | --- | --- | --- |
 | Năng lực đội kiểm duyệt | Tin dồn giờ cao điểm | Kiểm tra tự động xếp ưu tiên; theo dõi hàng đợi |
-| Giấy phép giả | Ảnh chỉnh sửa | Đối chiếu mã số thuế với cơ sở dữ liệu công khai `[cần chốt]` |
+| Giấy phép giả | Ảnh chỉnh sửa | Kiểm duyệt viên xét ảnh giấy phép (SRS BR-24); không đối chiếu tự động với cơ sở dữ liệu bên ngoài |
 | Kẻ gian lách từ khoá | Viết lách để qua lọc | Cập nhật danh sách từ khoá; báo cáo của ứng viên |
 | Duyệt sai, chặn nhầm | Nhà tuyển dụng thật bị từ chối | Lý do cụ thể, sửa và gửi lại; kênh khiếu nại |
 
 ## 10. Câu hỏi mở
 
-- Công ty chưa xác minh có được đăng tin không, hay bắt buộc xác minh trước?
-- Có cho "Lương thoả thuận" không, hay bắt buộc khoảng lương?
-- Ngưỡng 3 báo cáo để tạm ẩn có phù hợp?
-- Kiểm duyệt có làm 24/7 không?
+> Mọi câu hỏi dưới đây đã được PO chốt ngày 13/11/2026; quyết định ghi sau mỗi câu và đã cập nhật vào SRS.
+
+- Công ty chưa xác minh có được đăng tin không, hay bắt buộc xác minh trước? → **Đã chốt:** Được, tối đa 2 tin đang hiện cùng lúc, không có nhãn xác minh (SRS BR-25).
+- Có cho "Lương thoả thuận" không, hay bắt buộc khoảng lương? → **Đã chốt:** Có, bắt buộc ghi lý do ≥ 20 ký tự (SRS BR-26).
+- Ngưỡng 3 báo cáo để tạm ẩn có phù hợp? → **Đã chốt:** Giữ 3 báo cáo từ 3 ứng viên trong 24 giờ (SRS BR-33).
+- Kiểm duyệt có làm 24/7 không? → **Đã chốt:** Không. Chỉ cần có kiểm duyệt viên trong giờ hành chính; tin gửi ngoài giờ nằm trong hàng đợi.

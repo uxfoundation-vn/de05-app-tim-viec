@@ -53,14 +53,16 @@ Người tìm việc mất nhiều thời gian lọc tin trùng, tin không ghi 
 | Nhà tuyển dụng doanh nghiệp nhỏ | Đăng tin nhanh, lọc hồ sơ, hẹn phỏng vấn trong một chỗ |
 | Đội kiểm duyệt | Duyệt nhanh, phát hiện tin lừa đảo |
 
-Ngoài phạm vi cả đề: gói đăng tin trả phí và thanh toán, tìm kiếm ứng viên chủ động (headhunt), chấm điểm CV bằng AI, gọi video phỏng vấn trong app, nhắn tin tự do giữa hai bên, bài test năng lực.
+Ngoài phạm vi cả đề: gói đăng tin trả phí và thanh toán, màn tìm kiếm ứng viên và liên hệ chủ động phía nhà tuyển dụng (headhunt), chấm điểm CV bằng AI, gọi video phỏng vấn trong app, nhắn tin tự do giữa hai bên, bài test năng lực.
+
+Riêng chế độ "Cho nhà tuyển dụng tìm thấy" và chặn công ty ở TN01: đề chỉ gồm phần **cài đặt phía ứng viên** (lưu lựa chọn và sự đồng ý). Màn tìm ứng viên phía nhà tuyển dụng thuộc phase sau; khi có, màn đó phải tuân theo BR-09, BR-10 `[giả định]`.
 
 ## Quy ước dùng chung
 
 - Màn App ứng viên mã `SCR-U..`, Web nhà tuyển dụng `SCR-N..`, Web quản trị `SCR-A..`.
 - Đăng ký, đăng nhập dùng luồng chuẩn (số điện thoại, email, Google), không mô tả trong bộ tài liệu này.
 - Mức lương VND/tháng, hiển thị rút gọn "15–20 triệu".
-- Mã BR, MSG, UC đánh số liên tục trong cả đề: TN01 dùng BR-01–10, MSG-01–08; TN02 dùng BR-11–22, MSG-09–18; TN03 dùng BR-23–35, MSG-19–30; TN04 dùng BR-36–47, MSG-31–42. Mã bổ sung sau đánh tiếp từ số cuối: MSG-43 (thông báo đẩy khi đơn đổi trạng thái) nằm ở SRS TN02.
+- Mã BR, MSG, UC đánh số liên tục trong cả đề: TN01 dùng BR-01–10, MSG-01–08; TN02 dùng BR-11–22, MSG-09–18; TN03 dùng BR-23–35, MSG-19–30; TN04 dùng BR-36–47, MSG-31–42. Mã bổ sung sau đánh tiếp từ số cuối: MSG-43 (thông báo đẩy khi đơn đổi trạng thái) nằm ở SRS TN02; BR-48 (nhiều hồ sơ) ở SRS TN01.
 - Giá trị đánh dấu `[giả định]` dùng để dựng flow, cần PO hoặc BA xác nhận trước khi dùng.
 
 ## Danh sách màn hình

@@ -44,6 +44,7 @@ Hồ sơ là thứ nhà tuyển dụng nhìn thấy đầu tiên khi ứng viên
 - Tải lên tối đa 3 file CV (PDF, DOCX), chọn CV mặc định.
 - Chế độ hiển thị: Chỉ khi ứng tuyển (mặc định), hoặc Cho nhà tuyển dụng tìm thấy.
 - Chặn công ty cụ thể không thấy hồ sơ.
+- Hai mục trên chỉ gồm phần cài đặt phía ứng viên; màn tìm ứng viên phía nhà tuyển dụng ngoài phạm vi cả đề (xem README).
 
 ### 3.2 Ngoài phạm vi
 
@@ -186,11 +187,13 @@ AC03: Chặn công ty theo tên; công ty bị chặn không thấy hồ sơ dù
 | File CV chứa mã độc | Nhà tuyển dụng tải về bị nhiễm | Quét file khi tải lên; chỉ PDF, DOCX |
 | Lộ thông tin cá nhân | Liên hệ bị thu thập hàng loạt | Liên hệ chỉ hiện sau khi ứng tuyển; giới hạn xem |
 | Danh mục ngành, kỹ năng | Phải có sẵn, đủ tiếng Việt | Đội nội dung cung cấp; cho tự nhập |
-| Gợi ý gây áp lực | Ứng viên lao động phổ thông thấy hồ sơ "chưa tốt" | Trọng số khác theo nhóm ngành `[cần chốt]` |
+| Gợi ý gây áp lực | Ứng viên lao động phổ thông thấy hồ sơ "chưa tốt" | Trọng số khác theo nhóm ngành: lao động phổ thông không cần học vấn để đạt 100% (SRS BR-06) |
 
 ## 10. Câu hỏi mở
 
-- Hồ sơ tối thiểu có cần số điện thoại đã xác minh không?
-- Có cho ứng tuyển không cần hồ sơ (chỉ CV) không?
-- Độ hoàn thiện có hiện cho nhà tuyển dụng không?
-- Có cần nhiều hồ sơ cho nhiều hướng nghề khác nhau?
+> Mọi câu hỏi dưới đây đã được PO chốt ngày 13/11/2026; quyết định ghi sau mỗi câu và đã cập nhật vào SRS.
+
+- Hồ sơ tối thiểu có cần số điện thoại đã xác minh không? → **Đã chốt:** Có, số điện thoại đã xác minh OTP (SRS BR-02).
+- Có cho ứng tuyển không cần hồ sơ (chỉ CV) không? → **Đã chốt:** Có. Ứng tuyển bằng CV, chỉ cần họ tên và số điện thoại đã xác minh (SRS BR-04).
+- Độ hoàn thiện có hiện cho nhà tuyển dụng không? → **Đã chốt:** Không. Chỉ ứng viên thấy.
+- Có cần nhiều hồ sơ cho nhiều hướng nghề khác nhau? → **Đã chốt:** Có. Tối đa 3 hồ sơ theo hướng nghề, dùng chung thông tin cơ bản và CV (SRS BR-48).
