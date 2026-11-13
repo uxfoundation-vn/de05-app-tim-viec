@@ -1,8 +1,6 @@
-> **Mã:** DE05-TN04-PRD · **Trạng thái:** nháp · **Người viết:** Design (mock) · **SRS:** [SRS.md](SRS.md)
+> **Mã:** DE05-TN04-PRD · **Trạng thái:** đã chốt · **Người viết:** Design · **SRS:** [SRS.md](SRS.md)
 
 # PRD Xử lý hồ sơ và hẹn phỏng vấn (App tìm việc)
-
-> **Bản mock.** Con số đánh dấu `[giả định]` dùng để dựng flow, cần PO xác nhận trước khi dùng.
 
 ## 1. Bối cảnh và vấn đề
 
@@ -22,9 +20,9 @@ Khi ứng viên ứng tuyển ([TN02](../TN02-tim-viec-ung-tuyen/PRD.md)), đơn
 
 ### 1.3 Mục tiêu
 
-- ≥ 70% đơn được xem trong 7 ngày `[giả định]`.
-- ≥ 80% đơn có kết quả cuối (nhận hoặc chưa phù hợp) trong 30 ngày `[giả định]`.
-- Tỉ lệ ứng viên không đến phỏng vấn ≤ 20% `[giả định]`.
+- ≥ 70% đơn được xem trong 7 ngày.
+- ≥ 80% đơn có kết quả cuối (nhận hoặc chưa phù hợp) trong 30 ngày.
+- Tỉ lệ ứng viên không đến phỏng vấn ≤ 20%.
 
 ## 2. Người dùng
 
@@ -73,7 +71,7 @@ Từ chối luôn gửi lời nhắn lịch sự, có mẫu sẵn. Ghi chú nộ
 
 ## 5. Quy tắc nghiệp vụ
 
-| **Quy tắc** | **Giá trị** `[giả định]` |
+| **Quy tắc** | **Giá trị** |
 | --- | --- |
 | Cột pipeline | Mới, Đã xem, Phỏng vấn, Đã nhận, Chưa phù hợp, Đã rút |
 | Tự chuyển Đã xem | Khi nhà tuyển dụng mở chi tiết ứng viên lần đầu |
@@ -191,7 +189,7 @@ AC03: Đã nhận → lời nhắn chúc mừng và bước tiếp theo (tự so
 
 AC04: Đổi kết quả đã gửi (Đã nhận ↔ Chưa phù hợp, trong 30 ngày) → hỏi xác nhận; ứng viên được báo lại.
 
-## 8. Chỉ số theo dõi `[giả định]`
+## 8. Chỉ số theo dõi
 
 | **Chỉ số** | **Định nghĩa** | **Mục tiêu MVP** |
 | --- | --- | --- |

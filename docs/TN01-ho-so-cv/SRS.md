@@ -1,8 +1,8 @@
-> **Mã:** DE05-TN01-SRS · **Trạng thái:** nháp · **Người viết:** Design (mock) · **PRD:** [PRD.md](PRD.md)
+> **Mã:** DE05-TN01-SRS · **Trạng thái:** đã chốt · **Người viết:** Design · **PRD:** [PRD.md](PRD.md)
 
 # UC-DE05-01 - Tạo hồ sơ và CV
 
-> **Bản mock.** Giá trị `[giả định]` cần BA xác nhận. Ứng tuyển dùng hồ sơ và CV xem [SRS TN02](../TN02-tim-viec-ung-tuyen/SRS.md).
+> Ứng tuyển dùng hồ sơ và CV xem [SRS TN02](../TN02-tim-viec-ung-tuyen/SRS.md).
 
 ## 1. Tổng quan
 
@@ -12,7 +12,7 @@
 | Actor | Ứng viên · App ứng viên · Máy chủ · Dịch vụ quét file |
 | Phạm vi | Onboarding hồ sơ, sửa từng phần, độ hoàn thiện, CV, chế độ hiển thị, chặn công ty |
 | Ngoài phạm vi | Tạo CV từ mẫu, đọc CV tự động, video giới thiệu, xác minh bằng cấp; màn tìm kiếm ứng viên phía nhà tuyển dụng (phase sau, xem README) |
-| Nền tảng | App ứng viên iOS / Android `[giả định]` |
+| Nền tảng | App ứng viên iOS / Android |
 
 ## 2. User Story
 
@@ -33,11 +33,11 @@
 | BR-03 | **`MONG_MUON`**: vị trí mong muốn (1–3 chức danh), ngành (1–3), mức lương mong muốn (khoảng hoặc "Thoả thuận"), hình thức (toàn thời gian, bán thời gian, thời vụ, thực tập), khu vực làm việc (1–3) |
 | BR-04 | **Hồ sơ tối thiểu** = `CO_BAN` và `MONG_MUON` hợp lệ. Có hai cách để ứng tuyển được (SRS TN02 BR-18): (a) có hồ sơ tối thiểu; hoặc (b) **ứng tuyển bằng CV**: chỉ cần họ tên và số điện thoại đã xác minh, kèm 1 CV `SAN_SANG`; nhà tuyển dụng thấy CV thay cho hồ sơ |
 | BR-05 | **`KINH_NGHIEM`**: tối đa 10 mục; mỗi mục: chức danh, công ty, từ tháng, đến tháng hoặc "Đang làm", mô tả ≤ 1.000 ký tự. Cờ "Chưa có kinh nghiệm" thay cho danh sách. **`HOC_VAN`**: tối đa 5 mục. **`KY_NANG`**: tối đa 20. **`GIOI_THIEU`**: ≤ 1.000 ký tự |
-| BR-06 | **Độ hoàn thiện** = tổng trọng số phần đã có: `CO_BAN` 20, `MONG_MUON` 20, `KINH_NGHIEM` 20 (hoặc cờ Chưa có kinh nghiệm + `HOC_VAN` có ≥ 1 mục), `HOC_VAN` 15, `KY_NANG` 15 (≥ 3 kỹ năng), `GIOI_THIEU` 10 `[giả định]`. **Trọng số theo nhóm ngành**: hồ sơ có ngành đầu tiên trong `MONG_MUON` thuộc nhóm **lao động phổ thông** (bán hàng, phục vụ, giao hàng, sản xuất, kho vận, bảo vệ, giúp việc) dùng bộ trọng số `CO_BAN` 30, `MONG_MUON` 30, `KINH_NGHIEM` 20, `KY_NANG` 15, `GIOI_THIEU` 5, `HOC_VAN` 0, nên không cần học vấn vẫn đạt 100% `[giả định]`. Danh sách ngành thuộc nhóm do vận hành cấu hình |
+| BR-06 | **Độ hoàn thiện** = tổng trọng số phần đã có: `CO_BAN` 20, `MONG_MUON` 20, `KINH_NGHIEM` 20 (hoặc cờ Chưa có kinh nghiệm + `HOC_VAN` có ≥ 1 mục), `HOC_VAN` 15, `KY_NANG` 15 (≥ 3 kỹ năng), `GIOI_THIEU` 10. **Trọng số theo nhóm ngành**: hồ sơ có ngành đầu tiên trong `MONG_MUON` thuộc nhóm **lao động phổ thông** (bán hàng, phục vụ, giao hàng, sản xuất, kho vận, bảo vệ, giúp việc) dùng bộ trọng số `CO_BAN` 30, `MONG_MUON` 30, `KINH_NGHIEM` 20, `KY_NANG` 15, `GIOI_THIEU` 5, `HOC_VAN` 0, nên không cần học vấn vẫn đạt 100%. Danh sách ngành thuộc nhóm do vận hành cấu hình |
 | BR-07 | **Gợi ý** (độ hoàn thiện và gợi ý chỉ ứng viên thấy, không hiện cho nhà tuyển dụng): tối đa 3 phần thiếu có trọng số cao nhất theo bộ trọng số của nhóm ngành (BR-06), bỏ qua phần có trọng số 0; lời gợi ý viết theo hướng "thêm để nổi bật hơn", không dùng chữ "chưa tốt", mỗi gợi ý mở thẳng màn sửa phần đó |
 | BR-08 | **CV**: tối đa 3 file; PDF hoặc DOCX; ≤ 5 MB; tên hiển thị ≤ 50 ký tự; đúng 1 CV mặc định khi có ≥ 1 CV. File được quét; nhiễm mã độc → từ chối (MSG-05) |
-| BR-09 | **Hiển thị**: `CHI_KHI_UNG_TUYEN` (mặc định) hoặc `CHO_TIM_THAY`. Trong phạm vi đề, `CHO_TIM_THAY` chỉ được lưu làm lựa chọn và sự đồng ý của ứng viên; chưa có màn tìm ứng viên nên hồ sơ vẫn chỉ đến tay nhà tuyển dụng qua đơn ứng tuyển. Màn tìm ứng viên ở phase sau phải lọc theo cờ này `[giả định]`. Số điện thoại, email chỉ hiện cho nhà tuyển dụng của tin ứng viên đã ứng tuyển, trong mọi chế độ |
-| BR-48 | **Nhiều hồ sơ**: mỗi tài khoản tối đa 3 hồ sơ theo hướng nghề, tên hồ sơ ≤ 30 ký tự `[giả định]`. `CO_BAN` và CV dùng chung; `MONG_MUON`, `KINH_NGHIEM`, `HOC_VAN`, `KY_NANG`, `GIOI_THIEU` và độ hoàn thiện tính riêng từng hồ sơ. Đúng 1 hồ sơ mặc định, dùng cho gợi ý việc (TN02 BR-16) và chọn sẵn khi ứng tuyển. Chế độ hiển thị và chặn công ty áp dụng cho cả tài khoản. Đơn đã gửi giữ bản chụp hồ sơ đã chọn |
+| BR-09 | **Hiển thị**: `CHI_KHI_UNG_TUYEN` (mặc định) hoặc `CHO_TIM_THAY`. Trong phạm vi đề, `CHO_TIM_THAY` chỉ được lưu làm lựa chọn và sự đồng ý của ứng viên; chưa có màn tìm ứng viên nên hồ sơ vẫn chỉ đến tay nhà tuyển dụng qua đơn ứng tuyển. Màn tìm ứng viên ở phase sau phải lọc theo cờ này. Số điện thoại, email chỉ hiện cho nhà tuyển dụng của tin ứng viên đã ứng tuyển, trong mọi chế độ |
+| BR-48 | **Nhiều hồ sơ**: mỗi tài khoản tối đa 3 hồ sơ theo hướng nghề, tên hồ sơ ≤ 30 ký tự. `CO_BAN` và CV dùng chung; `MONG_MUON`, `KINH_NGHIEM`, `HOC_VAN`, `KY_NANG`, `GIOI_THIEU` và độ hoàn thiện tính riêng từng hồ sơ. Đúng 1 hồ sơ mặc định, dùng cho gợi ý việc (TN02 BR-16) và chọn sẵn khi ứng tuyển. Chế độ hiển thị và chặn công ty áp dụng cho cả tài khoản. Đơn đã gửi giữ bản chụp hồ sơ đã chọn |
 | BR-10 | **Chặn công ty**: tối đa 20; công ty bị chặn không thấy hồ sơ ở mọi chế độ, trừ đơn ứng viên chủ động gửi cho chính công ty đó. Trong phạm vi đề, danh sách chặn chỉ được lưu; có hiệu lực khi có màn tìm ứng viên (BR-09) |
 
 ## 4. Trạng thái
@@ -59,7 +59,7 @@ stateDiagram-v2
 | `CHUA_CO` | Chưa điền gì | Mời tạo hồ sơ khi mở app |
 | `DANG_TAO` | Thiếu `CO_BAN` hoặc `MONG_MUON` | Không ứng tuyển được; banner "Hoàn tất hồ sơ để ứng tuyển" |
 | `TOI_THIEU` | Có hồ sơ tối thiểu, độ hoàn thiện < 80% | Ứng tuyển được; hiện gợi ý BR-07 |
-| `DAY_DU` | Độ hoàn thiện ≥ 80% `[giả định]` | Nhãn "Hồ sơ tốt" |
+| `DAY_DU` | Độ hoàn thiện ≥ 80% | Nhãn "Hồ sơ tốt" |
 
 ### 4.2 Trạng thái một file CV
 
@@ -312,7 +312,7 @@ flowchart TD
 
 ## 8. API
 
-| **API** | **Request chính** | **Response chính** | **Timeout / retry** `[giả định]` |
+| **API** | **Request chính** | **Response chính** | **Timeout / retry** |
 | --- | --- | --- | --- |
 | \[ProfileGet\] | user_id | Các phần, độ hoàn thiện, gợi ý, trạng thái | 5s / 1 lần |
 | \[ProfileSectionSave\] | section, data | Phần đã lưu, độ hoàn thiện mới, trạng thái hồ sơ | 5s / 2 lần |
@@ -373,7 +373,7 @@ sequenceDiagram
 
 ## 10. Yêu cầu phi chức năng
 
-| **Mục** | **Yêu cầu** `[giả định]` |
+| **Mục** | **Yêu cầu** |
 | --- | --- |
 | Hiệu năng | **SCR-U01** hiện ≤ 1,5 giây; lưu phần ≤ 1 giây; quét CV ≤ 30 giây |
 | Bảo mật | CV lưu mã hoá; link tải CV có thời hạn 10 phút, chỉ cấp cho nhà tuyển dụng có quyền (BR-09, BR-10) |

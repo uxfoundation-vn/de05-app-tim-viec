@@ -1,8 +1,8 @@
-> **Mã:** DE05-TN02-SRS · **Trạng thái:** nháp · **Người viết:** Design (mock) · **PRD:** [PRD.md](PRD.md)
+> **Mã:** DE05-TN02-SRS · **Trạng thái:** đã chốt · **Người viết:** Design · **PRD:** [PRD.md](PRD.md)
 
 # UC-DE05-02 - Tìm việc và ứng tuyển
 
-> **Bản mock.** Giá trị `[giả định]` cần BA xác nhận. Hồ sơ và CV xem [SRS TN01](../TN01-ho-so-cv/SRS.md); tin và kiểm duyệt xem [SRS TN03](../TN03-dang-tin-kiem-duyet/SRS.md); xử lý đơn phía nhà tuyển dụng xem [SRS TN04](../TN04-xu-ly-ho-so-phong-van/SRS.md).
+> Hồ sơ và CV xem [SRS TN01](../TN01-ho-so-cv/SRS.md); tin và kiểm duyệt xem [SRS TN03](../TN03-dang-tin-kiem-duyet/SRS.md); xử lý đơn phía nhà tuyển dụng xem [SRS TN04](../TN04-xu-ly-ho-so-phong-van/SRS.md).
 
 ## 1. Tổng quan
 
@@ -12,7 +12,7 @@
 | Actor | Ứng viên · App ứng viên · Máy chủ tìm kiếm · Nhà tuyển dụng (nhận đơn) |
 | Phạm vi | Tìm kiếm, bộ lọc, gợi ý, chi tiết tin, lưu tin, báo cáo tin, ứng tuyển, danh sách đơn, rút đơn |
 | Ngoài phạm vi | Thông báo việc mới theo bộ lọc, bản đồ việc, ứng tuyển hàng loạt, đánh giá công ty |
-| Nền tảng | App ứng viên iOS / Android `[giả định]` |
+| Nền tảng | App ứng viên iOS / Android |
 
 ## 2. User Story
 
@@ -29,7 +29,7 @@
 
 | **Mã** | **Quy tắc** |
 | --- | --- |
-| BR-11 | **Tin hiển thị**: trạng thái `DANG_HIEN` (SRS TN03), chưa hết hạn nộp; công ty không bị khoá. Tin của công ty ứng viên đã chặn vẫn hiện `[giả định]` |
+| BR-11 | **Tin hiển thị**: trạng thái `DANG_HIEN` (SRS TN03), chưa hết hạn nộp; công ty không bị khoá. Tin của công ty ứng viên đã chặn vẫn hiện |
 | BR-12 | **Tìm kiếm**: khớp chức danh, mô tả, kỹ năng, tên công ty; bỏ dấu, không phân biệt hoa thường; có từ điển đồng nghĩa. Gợi ý khi gõ ≥ 2 ký tự, chờ 300 ms |
 | BR-13 | **Khu vực mặc định** = khu vực làm việc đầu tiên trong `MONG_MUON`; "Toàn quốc" khi chưa có |
 | BR-14 | **Bộ lọc**: lương (khoảng, triệu/tháng), "Có ghi mức lương" (**bật sẵn mặc định**, nên tin "Thoả thuận" bị ẩn khỏi kết quả mặc định; người dùng tắt để xem cả tin này), kinh nghiệm (Chưa có, Dưới 1 năm, 1–3, 3–5, Trên 5), hình thức, ngành, ngày đăng (24 giờ, 7 ngày, 30 ngày). Trong một nhóm là HOẶC, giữa các nhóm là VÀ |
@@ -87,7 +87,7 @@ stateDiagram-v2
 
 | **Mục** | **Nội dung** |
 | --- | --- |
-| Tiền điều kiện | Không có (tìm được khi chưa đăng nhập; ứng tuyển cần đăng nhập) `[giả định]` |
+| Tiền điều kiện | Không có (tìm được khi chưa đăng nhập; ứng tuyển cần đăng nhập) |
 | Hậu điều kiện | Ứng viên xem được chi tiết tin phù hợp |
 
 ```mermaid
@@ -310,7 +310,7 @@ flowchart TD
 
 ## 8. API
 
-| **API** | **Request chính** | **Response chính** | **Timeout / retry** `[giả định]` |
+| **API** | **Request chính** | **Response chính** | **Timeout / retry** |
 | --- | --- | --- | --- |
 | \[JobSuggest\] | keyword | Chức danh gợi ý | 2s / không retry |
 | \[JobSearch\] | keyword, location, filters, sort, cursor | Tin, total, cursor | 3s / 1 lần |
@@ -373,7 +373,7 @@ sequenceDiagram
 
 ## 10. Yêu cầu phi chức năng
 
-| **Mục** | **Yêu cầu** `[giả định]` |
+| **Mục** | **Yêu cầu** |
 | --- | --- |
 | Hiệu năng | Kết quả tìm kiếm ≤ 1,5 giây (p95); **SCR-U06** ≤ 1 giây |
 | Tính nhất quán | Tin bị gỡ, đóng biến mất khỏi kết quả tìm kiếm ≤ 1 phút |

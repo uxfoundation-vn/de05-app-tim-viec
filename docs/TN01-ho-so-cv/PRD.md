@@ -1,8 +1,6 @@
-> **Mã:** DE05-TN01-PRD · **Trạng thái:** nháp · **Người viết:** Design (mock) · **SRS:** [SRS.md](SRS.md)
+> **Mã:** DE05-TN01-PRD · **Trạng thái:** đã chốt · **Người viết:** Design · **SRS:** [SRS.md](SRS.md)
 
 # PRD Tạo hồ sơ và CV (App tìm việc)
-
-> **Bản mock.** Con số đánh dấu `[giả định]` dùng để dựng flow, cần PO xác nhận trước khi dùng.
 
 ## 1. Bối cảnh và vấn đề
 
@@ -22,8 +20,8 @@ Hồ sơ là thứ nhà tuyển dụng nhìn thấy đầu tiên khi ứng viên
 
 ### 1.3 Mục tiêu
 
-- ≥ 70% ứng viên mới có hồ sơ đủ để ứng tuyển trong ngày đầu `[giả định]`.
-- Thời gian tạo hồ sơ tối thiểu ≤ 5 phút `[giả định]`.
+- ≥ 70% ứng viên mới có hồ sơ đủ để ứng tuyển trong ngày đầu.
+- Thời gian tạo hồ sơ tối thiểu ≤ 5 phút.
 - Không có số điện thoại, email ứng viên hiển thị cho nhà tuyển dụng khi ứng viên chưa ứng tuyển.
 
 ## 2. Người dùng
@@ -73,7 +71,7 @@ Mặc định hồ sơ chỉ hiện với công ty mà ứng viên đã ứng tu
 
 ## 5. Quy tắc nghiệp vụ
 
-| **Quy tắc** | **Giá trị** `[giả định]` |
+| **Quy tắc** | **Giá trị** |
 | --- | --- |
 | Hồ sơ tối thiểu | Họ tên, năm sinh, khu vực, số điện thoại đã xác minh; vị trí mong muốn, mức lương mong muốn |
 | Kinh nghiệm | Tối đa 10 mục; có tuỳ chọn "Chưa có kinh nghiệm" |
@@ -169,7 +167,7 @@ AC02: Số điện thoại, email chỉ hiện với công ty ứng viên đã �
 
 AC03: Chặn công ty theo tên; công ty bị chặn không thấy hồ sơ dù ứng viên chọn cho tìm thấy.
 
-## 8. Chỉ số theo dõi `[giả định]`
+## 8. Chỉ số theo dõi
 
 | **Chỉ số** | **Định nghĩa** | **Mục tiêu MVP** |
 | --- | --- | --- |

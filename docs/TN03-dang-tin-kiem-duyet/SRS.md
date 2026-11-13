@@ -1,8 +1,8 @@
-> **Mã:** DE05-TN03-SRS · **Trạng thái:** nháp · **Người viết:** Design (mock) · **PRD:** [PRD.md](PRD.md)
+> **Mã:** DE05-TN03-SRS · **Trạng thái:** đã chốt · **Người viết:** Design · **PRD:** [PRD.md](PRD.md)
 
 # UC-DE05-03 - Đăng tin tuyển dụng và kiểm duyệt
 
-> **Bản mock.** Giá trị `[giả định]` cần BA xác nhận. Tin hiển thị cho ứng viên xem [SRS TN02](../TN02-tim-viec-ung-tuyen/SRS.md).
+> Tin hiển thị cho ứng viên xem [SRS TN02](../TN02-tim-viec-ung-tuyen/SRS.md).
 
 ## 1. Tổng quan
 
@@ -12,7 +12,7 @@
 | Actor | Nhà tuyển dụng · Kiểm duyệt viên · Web nhà tuyển dụng · Web quản trị · Máy chủ · Bộ kiểm tra tự động · Ứng viên (gửi báo cáo) |
 | Phạm vi | Hồ sơ và xác minh công ty, soạn tin, nháp, gửi duyệt, sửa, đóng, mở lại, nhân bản; hàng đợi duyệt, quyết định duyệt; báo cáo, gỡ tin, khoá công ty |
 | Ngoài phạm vi | Gói trả phí, nhiều tài khoản nhân sự, duyệt bằng AI hoàn toàn, đăng tin hàng loạt |
-| Nền tảng | Web nhà tuyển dụng, Web quản trị (desktop) `[giả định]` |
+| Nền tảng | Web nhà tuyển dụng, Web quản trị (desktop) |
 
 ## 2. User Story
 
@@ -31,11 +31,11 @@
 | --- | --- |
 | BR-23 | **Hồ sơ công ty** bắt buộc trước khi soạn tin: tên, mã số thuế (10 hoặc 13 số), địa chỉ, quy mô, ngành; logo và giới thiệu tuỳ chọn |
 | BR-24 | **Xác minh công ty**: (a) ảnh giấy phép kinh doanh khớp tên và mã số thuế, do kiểm duyệt viên xét; hoặc (b) xác nhận link gửi tới email có tên miền trùng website công ty. Kết quả: `DA_XAC_MINH` hoặc `BI_TU_CHOI` kèm lý do |
-| BR-25 | **Công ty chưa xác minh**: tối đa 2 tin `DANG_HIEN` cùng lúc; tin không có nhãn xác minh `[giả định]` |
+| BR-25 | **Công ty chưa xác minh**: tối đa 2 tin `DANG_HIEN` cùng lúc; tin không có nhãn xác minh |
 | BR-26 | **Trường bắt buộc của tin**: chức danh (5–100 ký tự), ngành, hình thức, số lượng (1–100), lương (min ≤ max, triệu/tháng; hoặc "Thoả thuận" kèm lý do ≥ 20 ký tự), kinh nghiệm, địa chỉ làm việc (≥ 1), mô tả (100–5.000 ký tự), yêu cầu (≥ 30 ký tự), thời gian nhận hồ sơ (7–60 ngày), có yêu cầu CV hay không. Lúc soạn tin chưa biết ngày duyệt, nên nhà tuyển dụng nhập **số ngày nhận hồ sơ**, không nhập ngày cụ thể; form hiện "Hạn nộp dự kiến" = hôm nay + số ngày, kèm ghi chú hạn nộp chính thức tính từ ngày duyệt (BR-30) |
 | BR-27 | **Nháp** tự lưu mỗi 10 giây khi có thay đổi; giữ 90 ngày |
 | BR-28 | **Kiểm tra tự động** khi gửi duyệt, gắn cờ cho kiểm duyệt viên: từ khoá cấm (đóng phí, đặt cọc, việc nhẹ lương cao…); lương max > 3 lần trung vị ngành; số điện thoại, link chat ngoài sàn trong mô tả; nội dung trùng ≥ 90% tin khác |
-| BR-29 | **Hàng đợi duyệt** (kiểm duyệt viên làm giờ hành chính, không trực 24/7 `[giả định]`; tin gửi ngoài giờ chờ tới ca sau): ưu tiên tin có cờ, sau đó theo thời gian chờ lâu nhất. Mở tin để duyệt → khoá cho kiểm duyệt viên đó 15 phút |
+| BR-29 | **Hàng đợi duyệt** (kiểm duyệt viên làm giờ hành chính, không trực 24/7; tin gửi ngoài giờ chờ tới ca sau): ưu tiên tin có cờ, sau đó theo thời gian chờ lâu nhất. Mở tin để duyệt → khoá cho kiểm duyệt viên đó 15 phút |
 | BR-30 | **Quyết định**: `DUYET` → tin `DANG_HIEN`, hạn nộp = ngày duyệt + số ngày nhận hồ sơ (BR-26); `YEU_CAU_SUA` → tin `CAN_SUA`, kèm trường và lý do mẫu; `TU_CHOI` → tin `BI_TU_CHOI`, kèm lý do mẫu. Bị yêu cầu sửa hoặc từ chối 3 lần → tin `BI_KHOA` |
 | BR-31 | **Sửa tin đang hiện**: đổi chức danh, lương, mô tả, yêu cầu, địa chỉ → bản sửa vào duyệt, bản cũ vẫn hiện tới khi bản sửa được duyệt. Đổi hạn nộp, số lượng → áp dụng ngay; hạn nộp mới phải trong khoảng 7–60 ngày tính từ ngày duyệt và không sớm hơn hôm nay |
 | BR-32 | **Đóng, mở lại**: đóng chủ động hoặc hết hạn → `DA_DONG`. Mở lại trong 30 ngày → `DANG_HIEN` với hạn nộp mới, đơn đang chờ không đổi trạng thái; quá 30 ngày → phải gửi duyệt lại. Đơn của tin `DA_DONG`: giữ trạng thái và xử lý được trong 30 ngày; hết 30 ngày chưa mở lại thì đơn `DA_GUI`, `DA_XEM` chuyển `TIN_DA_DONG` (TN02 BR-22) |
@@ -338,7 +338,7 @@ flowchart TD
 
 ## 8. API
 
-| **API** | **Request chính** | **Response chính** | **Timeout / retry** `[giả định]` |
+| **API** | **Request chính** | **Response chính** | **Timeout / retry** |
 | --- | --- | --- | --- |
 | \[CompanySave\] | Thông tin công ty | company_id | 5s / 2 lần |
 | \[CompanyVerifyEmail\] | email | Gửi link; lỗi khi tên miền không khớp | 5s / 1 lần |
@@ -403,7 +403,7 @@ sequenceDiagram
 
 ## 10. Yêu cầu phi chức năng
 
-| **Mục** | **Yêu cầu** `[giả định]` |
+| **Mục** | **Yêu cầu** |
 | --- | --- |
 | Hiệu năng | Tự lưu nháp ≤ 1 giây; kiểm tra tự động ≤ 5 giây; tin được duyệt hiện trong tìm kiếm ≤ 1 phút |
 | Bảo mật | Ảnh giấy phép chỉ kiểm duyệt viên xem; Web quản trị yêu cầu đăng nhập hai lớp |
