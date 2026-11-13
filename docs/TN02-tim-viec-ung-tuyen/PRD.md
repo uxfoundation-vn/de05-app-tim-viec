@@ -221,9 +221,9 @@ AC02: Rút xong không ứng tuyển lại tin đó trong 30 ngày; sau 30 ngày
 
 ## 10. Câu hỏi mở
 
-> Câu nào đã có giá trị ở mục 5 thì giá trị đó là **tạm chốt** `[giả định]` để dựng flow. Câu hỏi vẫn để mở cho đến khi PO xác nhận.
+> Mọi câu hỏi dưới đây đã được PO chốt ngày 13/11/2026; quyết định ghi sau mỗi câu và đã cập nhật vào SRS.
 
 - Có ẩn tin không ghi lương khỏi kết quả mặc định không? → **Đã chốt:** Có. Bộ lọc "Có ghi mức lương" bật sẵn mặc định (SRS BR-14).
-- Tin hết hạn tự đóng đơn chưa xử lý thành "Tin đã đóng" hay giữ nguyên?
+- Tin hết hạn tự đóng đơn chưa xử lý thành "Tin đã đóng" hay giữ nguyên? → **Đã chốt:** Giữ nguyên trạng thái 30 ngày; tin không mở lại thì đơn chưa xử lý chuyển "Tin đã đóng" (SRS BR-22).
 - Có cho ứng viên sửa lời nhắn sau khi gửi? → **Đã chốt:** Không.
-- Gợi ý việc phù hợp dựa trên mong muốn hay cả lịch sử xem tin?
+- Gợi ý việc phù hợp dựa trên mong muốn hay cả lịch sử xem tin? → **Đã chốt:** Chỉ dựa trên mong muốn của hồ sơ mặc định (SRS BR-16).

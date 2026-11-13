@@ -213,9 +213,9 @@ AC04: Đổi kết quả đã gửi (Đã nhận ↔ Chưa phù hợp, trong 30 
 
 ## 10. Câu hỏi mở
 
-> Câu nào đã có giá trị ở mục 5 thì giá trị đó là **tạm chốt** `[giả định]` để dựng flow. Câu hỏi vẫn để mở cho đến khi PO xác nhận.
+> Mọi câu hỏi dưới đây đã được PO chốt ngày 13/11/2026; quyết định ghi sau mỗi câu và đã cập nhật vào SRS.
 
 - Có cho nhắn tin tự do giữa hai bên ở MVP không? → **Đã chốt:** Không (đã ngoài phạm vi).
 - Có đánh dấu "Không đến" để ảnh hưởng hồ sơ ứng viên không? → **Đã chốt:** Không. Chỉ áp dụng cho đơn đó.
-- Từ chối hàng loạt có bắt buộc lời nhắn riêng?
+- Từ chối hàng loạt có bắt buộc lời nhắn riêng? → **Đã chốt:** Không. Dùng chung một lời nhắn (SRS BR-39).
 - Có cần nhiều vòng phỏng vấn ở MVP? → **Đã chốt:** Không. MVP chỉ 1 vòng.

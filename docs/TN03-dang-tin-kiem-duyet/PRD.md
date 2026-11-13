@@ -204,9 +204,9 @@ AC04: Ứng viên đã báo cáo nhận kết quả xử lý.
 
 ## 10. Câu hỏi mở
 
-> Câu nào đã có giá trị ở mục 5 thì giá trị đó là **tạm chốt** `[giả định]` để dựng flow. Câu hỏi vẫn để mở cho đến khi PO xác nhận.
+> Mọi câu hỏi dưới đây đã được PO chốt ngày 13/11/2026; quyết định ghi sau mỗi câu và đã cập nhật vào SRS.
 
-- Công ty chưa xác minh có được đăng tin không, hay bắt buộc xác minh trước?
-- Có cho "Lương thoả thuận" không, hay bắt buộc khoảng lương?
-- Ngưỡng 3 báo cáo để tạm ẩn có phù hợp?
+- Công ty chưa xác minh có được đăng tin không, hay bắt buộc xác minh trước? → **Đã chốt:** Được, tối đa 2 tin đang hiện cùng lúc, không có nhãn xác minh (SRS BR-25).
+- Có cho "Lương thoả thuận" không, hay bắt buộc khoảng lương? → **Đã chốt:** Có, bắt buộc ghi lý do ≥ 20 ký tự (SRS BR-26).
+- Ngưỡng 3 báo cáo để tạm ẩn có phù hợp? → **Đã chốt:** Giữ 3 báo cáo từ 3 ứng viên trong 24 giờ (SRS BR-33).
 - Kiểm duyệt có làm 24/7 không? → **Đã chốt:** Không. Chỉ cần có kiểm duyệt viên trong giờ hành chính; tin gửi ngoài giờ nằm trong hàng đợi.

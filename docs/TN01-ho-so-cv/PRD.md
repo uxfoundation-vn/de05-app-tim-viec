@@ -191,9 +191,9 @@ AC03: Chặn công ty theo tên; công ty bị chặn không thấy hồ sơ dù
 
 ## 10. Câu hỏi mở
 
-> Câu nào đã có giá trị ở mục 5 thì giá trị đó là **tạm chốt** `[giả định]` để dựng flow. Câu hỏi vẫn để mở cho đến khi PO xác nhận.
+> Mọi câu hỏi dưới đây đã được PO chốt ngày 13/11/2026; quyết định ghi sau mỗi câu và đã cập nhật vào SRS.
 
-- Hồ sơ tối thiểu có cần số điện thoại đã xác minh không?
+- Hồ sơ tối thiểu có cần số điện thoại đã xác minh không? → **Đã chốt:** Có, số điện thoại đã xác minh OTP (SRS BR-02).
 - Có cho ứng tuyển không cần hồ sơ (chỉ CV) không? → **Đã chốt:** Có. Ứng tuyển bằng CV, chỉ cần họ tên và số điện thoại đã xác minh (SRS BR-04).
 - Độ hoàn thiện có hiện cho nhà tuyển dụng không? → **Đã chốt:** Không. Chỉ ứng viên thấy.
 - Có cần nhiều hồ sơ cho nhiều hướng nghề khác nhau? → **Đã chốt:** Có. Tối đa 3 hồ sơ theo hướng nghề, dùng chung thông tin cơ bản và CV (SRS BR-48).
