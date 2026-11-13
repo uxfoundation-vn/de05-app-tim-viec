@@ -1,8 +1,6 @@
-> **Mã:** DE05-TN03-PRD · **Trạng thái:** nháp · **Người viết:** Design (mock) · **SRS:** [SRS.md](SRS.md)
+> **Mã:** DE05-TN03-PRD · **Trạng thái:** đã chốt · **Người viết:** Design · **SRS:** [SRS.md](SRS.md)
 
 # PRD Đăng tin tuyển dụng và kiểm duyệt (App tìm việc)
-
-> **Bản mock.** Con số đánh dấu `[giả định]` dùng để dựng flow, cần PO xác nhận trước khi dùng.
 
 ## 1. Bối cảnh và vấn đề
 
@@ -22,9 +20,9 @@ Tin tuyển dụng là nguồn cung của sàn. Một tin lừa đảo đủ là
 
 ### 1.3 Mục tiêu
 
-- ≥ 90% tin được duyệt hoặc từ chối trong 4 giờ làm việc `[giả định]`.
-- Tỉ lệ tin bị gỡ sau khi đã hiển thị (do vi phạm) ≤ 1% `[giả định]`.
-- 100% báo cáo vi phạm được xử lý trong 24 giờ `[giả định]`.
+- ≥ 90% tin được duyệt hoặc từ chối trong 4 giờ làm việc.
+- Tỉ lệ tin bị gỡ sau khi đã hiển thị (do vi phạm) ≤ 1%.
+- 100% báo cáo vi phạm được xử lý trong 24 giờ.
 
 ## 2. Người dùng
 
@@ -72,7 +70,7 @@ Báo cáo của ứng viên vào hàng đợi ưu tiên; nhiều báo cáo thì 
 
 ## 5. Quy tắc nghiệp vụ
 
-| **Quy tắc** | **Giá trị** `[giả định]` |
+| **Quy tắc** | **Giá trị** |
 | --- | --- |
 | Xác minh công ty | Giấy phép kinh doanh (ảnh, mã số thuế) hoặc email tên miền công ty |
 | Công ty chưa xác minh | Được đăng tối đa 2 tin đang hiển thị; tin không có nhãn xác minh |
@@ -182,7 +180,7 @@ AC03: Quyết định: Giữ tin, Gỡ tin, Gỡ tin và khoá công ty; nhà tu
 
 AC04: Ứng viên đã báo cáo nhận kết quả xử lý.
 
-## 8. Chỉ số theo dõi `[giả định]`
+## 8. Chỉ số theo dõi
 
 | **Chỉ số** | **Định nghĩa** | **Mục tiêu MVP** |
 | --- | --- | --- |

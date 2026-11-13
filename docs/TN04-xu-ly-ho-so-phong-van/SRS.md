@@ -1,8 +1,8 @@
-> **Mã:** DE05-TN04-SRS · **Trạng thái:** nháp · **Người viết:** Design (mock) · **PRD:** [PRD.md](PRD.md)
+> **Mã:** DE05-TN04-SRS · **Trạng thái:** đã chốt · **Người viết:** Design · **PRD:** [PRD.md](PRD.md)
 
 # UC-DE05-04 - Xử lý hồ sơ và hẹn phỏng vấn
 
-> **Bản mock.** Giá trị `[giả định]` cần BA xác nhận. Trạng thái đơn định nghĩa ở [SRS TN02](../TN02-tim-viec-ung-tuyen/SRS.md), mục 4.1.
+> Trạng thái đơn định nghĩa ở [SRS TN02](../TN02-tim-viec-ung-tuyen/SRS.md), mục 4.1.
 
 ## 1. Tổng quan
 
@@ -12,7 +12,7 @@
 | Actor | Nhà tuyển dụng · Ứng viên · Web nhà tuyển dụng · App ứng viên · Máy chủ · Dịch vụ email, thông báo đẩy |
 | Phạm vi | Pipeline, chi tiết ứng viên, ghi chú, gắn sao, đổi trạng thái, lời mời phỏng vấn, chọn khung giờ, xin đổi, nhắc lịch, kết quả |
 | Ngoài phạm vi | Gọi video, nhắn tin tự do, đồng bộ lịch, bảng đánh giá nhiều người, thư mời nhận việc |
-| Nền tảng | Web nhà tuyển dụng; App ứng viên iOS / Android `[giả định]` |
+| Nền tảng | Web nhà tuyển dụng; App ứng viên iOS / Android |
 
 ## 2. User Story
 
@@ -31,9 +31,9 @@
 | --- | --- |
 | BR-36 | **Cột pipeline** ánh xạ trạng thái đơn: Mới = `DA_GUI`, Đã xem = `DA_XEM`, Phỏng vấn = `MOI_PHONG_VAN`, Đã nhận = `DA_NHAN`, Chưa phù hợp = `CHUA_PHU_HOP`, Đã rút = `DA_RUT` (chỉ xem), Tin đã đóng = `TIN_DA_DONG` (chỉ xem) |
 | BR-37 | **Tự chuyển `DA_XEM`** khi nhà tuyển dụng mở chi tiết đơn `DA_GUI` lần đầu |
-| BR-38 | **Đổi trạng thái thủ công** cho phép: `DA_GUI`/`DA_XEM` → `CHUA_PHU_HOP`; `DA_XEM` → `MOI_PHONG_VAN` (qua UC-14); `MOI_PHONG_VAN` → `DA_NHAN` hoặc `CHUA_PHU_HOP`; `CHUA_PHU_HOP` → `DA_XEM` (mở lại, trong 30 ngày); **đổi kết quả đã gửi** (BR-47): `DA_NHAN` → `CHUA_PHU_HOP` và `CHUA_PHU_HOP` → `DA_NHAN`, trong 30 ngày kể từ khi gửi kết quả `[giả định]`. Không đổi đơn `DA_RUT`, `TIN_DA_DONG`. Đơn của tin `DA_DONG` vẫn đổi được theo các chuyển trên trong 30 ngày kể từ khi tin đóng (TN02 BR-22) |
+| BR-38 | **Đổi trạng thái thủ công** cho phép: `DA_GUI`/`DA_XEM` → `CHUA_PHU_HOP`; `DA_XEM` → `MOI_PHONG_VAN` (qua UC-14); `MOI_PHONG_VAN` → `DA_NHAN` hoặc `CHUA_PHU_HOP`; `CHUA_PHU_HOP` → `DA_XEM` (mở lại, trong 30 ngày); **đổi kết quả đã gửi** (BR-47): `DA_NHAN` → `CHUA_PHU_HOP` và `CHUA_PHU_HOP` → `DA_NHAN`, trong 30 ngày kể từ khi gửi kết quả. Không đổi đơn `DA_RUT`, `TIN_DA_DONG`. Đơn của tin `DA_DONG` vẫn đổi được theo các chuyển trên trong 30 ngày kể từ khi tin đóng (TN02 BR-22) |
 | BR-39 | **Chọn nhiều đơn**: đổi trạng thái tối đa 50 đơn mỗi lần, cùng một lời nhắn |
-| BR-40 | **Liên hệ và CV** chỉ hiện với đơn khác `DA_RUT`. Mỗi lần tải CV ghi nhật ký; tối đa 200 lượt tải mỗi ngày mỗi công ty `[giả định]` |
+| BR-40 | **Liên hệ và CV** chỉ hiện với đơn khác `DA_RUT`. Mỗi lần tải CV ghi nhật ký; tối đa 200 lượt tải mỗi ngày mỗi công ty |
 | BR-41 | **Ghi chú nội bộ** ≤ 1.000 ký tự mỗi ghi chú, nhiều ghi chú theo thời gian; **sao** 0–1. Cả hai không bao giờ trả về cho App ứng viên |
 | BR-42 | **Lời mời phỏng vấn**: hình thức `TRUC_TIEP` (địa chỉ, người liên hệ, số điện thoại) hoặc `ONLINE` (link họp hợp lệ); 1–3 khung giờ, thời lượng 15–120 phút; khung sớm nhất ≥ 24 giờ từ lúc gửi; các khung không trùng nhau |
 | BR-43 | **Trả lời lời mời**: ứng viên chọn 1 khung → lịch `DA_CHOT`; xin đổi (tối đa 1 lần) kèm ghi chú ≤ 200 ký tự → `XIN_DOI`; từ chối → đơn `CHUA_PHU_HOP` lý do "Ứng viên từ chối phỏng vấn". Quá 48 giờ không trả lời → lời mời `QUA_HAN`, đơn quay về `DA_XEM`, báo nhà tuyển dụng; từ `DA_XEM` nhà tuyển dụng gửi lại lời mời (UC-14) hoặc chọn Chưa phù hợp, ứng viên rút đơn được (TN02 BR-21). Lịch đã `DA_CHOT`, trước giờ bắt đầu ≥ 2 giờ: ứng viên vẫn xin đổi được (nếu chưa dùng lượt đổi) hoặc từ chối. Lời mời `XIN_DOI` mà nhà tuyển dụng không gửi khung mới trong 72 giờ → nhắc nhà tuyển dụng ở giờ thứ 48, hết 72 giờ chuyển `QUA_HAN`, đơn cũng quay về `DA_XEM` |
@@ -353,7 +353,7 @@ Kéo thẻ giữa các cột chỉ cho phép chuyển theo BR-38; kéo sang Ph�
 
 ## 8. API
 
-| **API** | **Request chính** | **Response chính** | **Timeout / retry** `[giả định]` |
+| **API** | **Request chính** | **Response chính** | **Timeout / retry** |
 | --- | --- | --- | --- |
 | \[PipelineGet\] | job_id, filters | Đơn theo cột, số lượng | 3s / 1 lần |
 | \[ApplicationGet\] | application_id | Hồ sơ chụp, CV, lời nhắn, liên hệ, ghi chú, sao, lời mời; tự áp BR-37 | 3s / 1 lần |
@@ -415,7 +415,7 @@ sequenceDiagram
 
 ## 10. Yêu cầu phi chức năng
 
-| **Mục** | **Yêu cầu** `[giả định]` |
+| **Mục** | **Yêu cầu** |
 | --- | --- |
 | Hiệu năng | **SCR-N04** ≤ 2 giây với 500 đơn; đổi trạng thái 50 đơn ≤ 5 giây |
 | Bảo mật, riêng tư | Ghi chú nội bộ và sao không có trong mọi API trả cho App ứng viên; tải CV có nhật ký |

@@ -1,8 +1,6 @@
-> **Mã:** DE05-TN02-PRD · **Trạng thái:** nháp · **Người viết:** Design (mock) · **SRS:** [SRS.md](SRS.md)
+> **Mã:** DE05-TN02-PRD · **Trạng thái:** đã chốt · **Người viết:** Design · **SRS:** [SRS.md](SRS.md)
 
 # PRD Tìm việc và ứng tuyển (App tìm việc)
-
-> **Bản mock.** Con số đánh dấu `[giả định]` dùng để dựng flow, cần PO xác nhận trước khi dùng.
 
 ## 1. Bối cảnh và vấn đề
 
@@ -22,9 +20,9 @@
 
 ### 1.3 Mục tiêu
 
-- ≥ 30% phiên tìm kiếm có ít nhất 1 lượt xem chi tiết tin `[giả định]`.
-- Ứng tuyển trong ≤ 3 chạm từ màn chi tiết tin `[giả định]`.
-- 100% đơn có trạng thái cập nhật cho ứng viên; ≥ 70% đơn được nhà tuyển dụng xem trong 7 ngày `[giả định]`.
+- ≥ 30% phiên tìm kiếm có ít nhất 1 lượt xem chi tiết tin.
+- Ứng tuyển trong ≤ 3 chạm từ màn chi tiết tin.
+- 100% đơn có trạng thái cập nhật cho ứng viên; ≥ 70% đơn được nhà tuyển dụng xem trong 7 ngày.
 
 ## 2. Người dùng
 
@@ -74,7 +72,7 @@ Mỗi đơn có trạng thái rõ ràng, được báo khi thay đổi. Đơn kh
 
 ## 5. Quy tắc nghiệp vụ
 
-| **Quy tắc** | **Giá trị** `[giả định]` |
+| **Quy tắc** | **Giá trị** |
 | --- | --- |
 | Tin hiển thị | Chỉ tin đã duyệt, còn hạn, chưa đóng |
 | Sắp xếp mặc định | Phù hợp nhất (khớp từ khoá, mong muốn), sau đó mới nhất |
@@ -199,7 +197,7 @@ AC01: Rút được khi đơn ở Đã gửi hoặc Đã xem; hỏi xác nhận.
 
 AC02: Rút xong không ứng tuyển lại tin đó trong 30 ngày; sau 30 ngày ứng tuyển lại được và tạo đơn mới.
 
-## 8. Chỉ số theo dõi `[giả định]`
+## 8. Chỉ số theo dõi
 
 | **Chỉ số** | **Định nghĩa** | **Mục tiêu MVP** |
 | --- | --- | --- |
