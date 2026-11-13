@@ -32,12 +32,13 @@
 | BR-01 | **Phần hồ sơ**: `CO_BAN`, `MONG_MUON`, `KINH_NGHIEM`, `HOC_VAN`, `KY_NANG`, `GIOI_THIEU`. Mỗi phần lưu độc lập |
 | BR-02 | **`CO_BAN`**: họ tên (2–50 ký tự), năm sinh (16–70 tuổi), giới tính (tuỳ chọn), khu vực (tỉnh/thành, quận/huyện), số điện thoại lấy từ tài khoản đã xác minh OTP, email (tuỳ chọn) |
 | BR-03 | **`MONG_MUON`**: vị trí mong muốn (1–3 chức danh), ngành (1–3), mức lương mong muốn (khoảng hoặc "Thoả thuận"), hình thức (toàn thời gian, bán thời gian, thời vụ, thực tập), khu vực làm việc (1–3) |
-| BR-04 | **Hồ sơ tối thiểu** = `CO_BAN` và `MONG_MUON` hợp lệ. Chưa có hồ sơ tối thiểu thì không ứng tuyển được (SRS TN02) |
+| BR-04 | **Hồ sơ tối thiểu** = `CO_BAN` và `MONG_MUON` hợp lệ. Có hai cách để ứng tuyển được (SRS TN02 BR-18): (a) có hồ sơ tối thiểu; hoặc (b) **ứng tuyển bằng CV**: chỉ cần họ tên và số điện thoại đã xác minh, kèm 1 CV `SAN_SANG`; nhà tuyển dụng thấy CV thay cho hồ sơ |
 | BR-05 | **`KINH_NGHIEM`**: tối đa 10 mục; mỗi mục: chức danh, công ty, từ tháng, đến tháng hoặc "Đang làm", mô tả ≤ 1.000 ký tự. Cờ "Chưa có kinh nghiệm" thay cho danh sách. **`HOC_VAN`**: tối đa 5 mục. **`KY_NANG`**: tối đa 20. **`GIOI_THIEU`**: ≤ 1.000 ký tự |
 | BR-06 | **Độ hoàn thiện** = tổng trọng số phần đã có: `CO_BAN` 20, `MONG_MUON` 20, `KINH_NGHIEM` 20 (hoặc cờ Chưa có kinh nghiệm + `HOC_VAN` có ≥ 1 mục), `HOC_VAN` 15, `KY_NANG` 15 (≥ 3 kỹ năng), `GIOI_THIEU` 10 `[giả định]` |
-| BR-07 | **Gợi ý**: tối đa 3 phần thiếu có trọng số cao nhất, mỗi gợi ý mở thẳng màn sửa phần đó |
+| BR-07 | **Gợi ý** (độ hoàn thiện và gợi ý chỉ ứng viên thấy, không hiện cho nhà tuyển dụng): tối đa 3 phần thiếu có trọng số cao nhất, mỗi gợi ý mở thẳng màn sửa phần đó |
 | BR-08 | **CV**: tối đa 3 file; PDF hoặc DOCX; ≤ 5 MB; tên hiển thị ≤ 50 ký tự; đúng 1 CV mặc định khi có ≥ 1 CV. File được quét; nhiễm mã độc → từ chối (MSG-05) |
 | BR-09 | **Hiển thị**: `CHI_KHI_UNG_TUYEN` (mặc định) hoặc `CHO_TIM_THAY`. Trong phạm vi đề, `CHO_TIM_THAY` chỉ được lưu làm lựa chọn và sự đồng ý của ứng viên; chưa có màn tìm ứng viên nên hồ sơ vẫn chỉ đến tay nhà tuyển dụng qua đơn ứng tuyển. Màn tìm ứng viên ở phase sau phải lọc theo cờ này `[giả định]`. Số điện thoại, email chỉ hiện cho nhà tuyển dụng của tin ứng viên đã ứng tuyển, trong mọi chế độ |
+| BR-48 | **Nhiều hồ sơ**: mỗi tài khoản tối đa 3 hồ sơ theo hướng nghề, tên hồ sơ ≤ 30 ký tự `[giả định]`. `CO_BAN` và CV dùng chung; `MONG_MUON`, `KINH_NGHIEM`, `HOC_VAN`, `KY_NANG`, `GIOI_THIEU` và độ hoàn thiện tính riêng từng hồ sơ. Đúng 1 hồ sơ mặc định, dùng cho gợi ý việc (TN02 BR-16) và chọn sẵn khi ứng tuyển. Chế độ hiển thị và chặn công ty áp dụng cho cả tài khoản. Đơn đã gửi giữ bản chụp hồ sơ đã chọn |
 | BR-10 | **Chặn công ty**: tối đa 20; công ty bị chặn không thấy hồ sơ ở mọi chế độ, trừ đơn ứng viên chủ động gửi cho chính công ty đó. Trong phạm vi đề, danh sách chặn chỉ được lưu; có hiệu lực khi có màn tìm ứng viên (BR-09) |
 
 ## 4. Trạng thái
@@ -284,6 +285,7 @@ flowchart TD
 | --- | --- | --- | --- |
 | 1 | Đầu hồ sơ | Header | Ảnh đại diện (tuỳ chọn), họ tên, vị trí mong muốn, khu vực |
 | 2 | Độ hoàn thiện | Progress | "{x}%" + nhãn trạng thái hồ sơ |
+| 2b | Chọn hồ sơ | Dropdown | Tên hồ sơ đang xem, "Đặt làm mặc định", "Tạo hồ sơ mới" (tối đa 3, BR-48) |
 | 3 | Gợi ý | List | Tối đa 3 (BR-07); chạm mở **SCR-U02** |
 | 4 | Thẻ phần | Cards | Mỗi phần: tóm tắt nội dung hoặc "Thêm {phần}"; chạm mở **SCR-U02** |
 | 5 | CV | Card | Số CV, CV mặc định; chạm mở **SCR-U03** |
@@ -378,7 +380,7 @@ Bản EN: `[chờ bổ sung]`.
 | --- | --- |
 | Hiệu năng | **SCR-U01** hiện ≤ 1,5 giây; lưu phần ≤ 1 giây; quét CV ≤ 30 giây |
 | Bảo mật | CV lưu mã hoá; link tải CV có thời hạn 10 phút, chỉ cấp cho nhà tuyển dụng có quyền (BR-09, BR-10) |
-| Quyền riêng tư | Ứng viên xoá được tài khoản và toàn bộ hồ sơ, CV; đơn đã gửi chỉ giữ bản ẩn danh hoá `[cần chốt]` |
+| Quyền riêng tư | Ứng viên xoá được tài khoản và toàn bộ hồ sơ, CV; đơn đã gửi chỉ giữ bản ẩn danh hoá |
 | Log / audit | Mỗi lần tải, xoá, đổi CV mặc định; mỗi lần đổi cài đặt quyền riêng tư (giá trị cũ, mới, thời điểm) |
 | Tracking | Bắt đầu và xong onboarding, lưu từng phần, độ hoàn thiện, chạm gợi ý, tải CV (kết quả), đổi chế độ hiển thị, chặn công ty |
 | Accessibility | Lỗi inline đọc được bằng trình đọc màn hình; thanh bước có nhãn "Bước {x} trên 2"; hỗ trợ cỡ chữ hệ thống |

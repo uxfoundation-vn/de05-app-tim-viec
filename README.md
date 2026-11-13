@@ -62,7 +62,7 @@ Riêng chế độ "Cho nhà tuyển dụng tìm thấy" và chặn công ty ở
 - Màn App ứng viên mã `SCR-U..`, Web nhà tuyển dụng `SCR-N..`, Web quản trị `SCR-A..`.
 - Đăng ký, đăng nhập dùng luồng chuẩn (số điện thoại, email, Google), không mô tả trong bộ tài liệu này.
 - Mức lương VND/tháng, hiển thị rút gọn "15–20 triệu".
-- Mã BR, MSG, UC đánh số liên tục trong cả đề: TN01 dùng BR-01–10, MSG-01–08; TN02 dùng BR-11–22, MSG-09–18; TN03 dùng BR-23–35, MSG-19–30; TN04 dùng BR-36–47, MSG-31–42. Mã bổ sung sau đánh tiếp từ số cuối: MSG-43 (thông báo đẩy khi đơn đổi trạng thái) nằm ở SRS TN02.
+- Mã BR, MSG, UC đánh số liên tục trong cả đề: TN01 dùng BR-01–10, MSG-01–08; TN02 dùng BR-11–22, MSG-09–18; TN03 dùng BR-23–35, MSG-19–30; TN04 dùng BR-36–47, MSG-31–42. Mã bổ sung sau đánh tiếp từ số cuối: MSG-43 (thông báo đẩy khi đơn đổi trạng thái) nằm ở SRS TN02; BR-48 (nhiều hồ sơ) ở SRS TN01.
 - Giá trị đánh dấu `[giả định]` dùng để dựng flow, cần PO hoặc BA xác nhận trước khi dùng.
 
 ## Danh sách màn hình

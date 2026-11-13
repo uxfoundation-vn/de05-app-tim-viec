@@ -41,7 +41,7 @@
 | BR-44 | **Khung giờ đã chọn** không còn hợp lệ nếu đã qua; ứng viên mở lời mời khi mọi khung đã qua → lời mời `QUA_HAN` |
 | BR-45 | **Nhắc lịch** gửi cả hai bên 24 giờ và 2 giờ trước giờ bắt đầu, qua thông báo đẩy (ứng viên) và email (cả hai) |
 | BR-46 | **Đổi, huỷ lịch đã chốt** bởi nhà tuyển dụng: bắt buộc lý do; đổi → gửi lời mời mới (BR-42) thay lời mời cũ; huỷ → đơn về `DA_XEM` |
-| BR-47 | **Kết quả** `CHUA_PHU_HOP` bắt buộc lời nhắn (mẫu hoặc tự soạn, 20–1.000 ký tự). `DA_NHAN` có lời nhắn tuỳ chọn. Lịch `DA_DIEN_RA` có thêm lựa chọn "Ứng viên không đến" → đơn `CHUA_PHU_HOP` với lý do "Không tham gia phỏng vấn", không bắt buộc lời nhắn. Đổi kết quả đã gửi theo các chuyển trạng thái ở BR-38 → hỏi xác nhận (MSG-33), ứng viên nhận thông báo mới; đổi sang `CHUA_PHU_HOP` vẫn bắt buộc lời nhắn. Nhắc nhà tuyển dụng qua email hằng ngày khi có đơn `DA_GUI` quá 3 ngày |
+| BR-47 | **Kết quả** `CHUA_PHU_HOP` bắt buộc lời nhắn (mẫu hoặc tự soạn, 20–1.000 ký tự). `DA_NHAN` có lời nhắn tuỳ chọn. Lịch `DA_DIEN_RA` có thêm lựa chọn "Ứng viên không đến" → đơn `CHUA_PHU_HOP` với lý do "Không tham gia phỏng vấn", không bắt buộc lời nhắn; không ảnh hưởng hồ sơ hay đơn khác của ứng viên. Đổi kết quả đã gửi theo các chuyển trạng thái ở BR-38 → hỏi xác nhận (MSG-33), ứng viên nhận thông báo mới; đổi sang `CHUA_PHU_HOP` vẫn bắt buộc lời nhắn. Nhắc nhà tuyển dụng qua email hằng ngày khi có đơn `DA_GUI` quá 3 ngày |
 
 ## 4. Trạng thái
 

@@ -198,7 +198,7 @@ AC04: Ứng viên đã báo cáo nhận kết quả xử lý.
 | **Mục** | **Mô tả** | **Hướng xử lý** |
 | --- | --- | --- |
 | Năng lực đội kiểm duyệt | Tin dồn giờ cao điểm | Kiểm tra tự động xếp ưu tiên; theo dõi hàng đợi |
-| Giấy phép giả | Ảnh chỉnh sửa | Đối chiếu mã số thuế với cơ sở dữ liệu công khai `[cần chốt]` |
+| Giấy phép giả | Ảnh chỉnh sửa | Kiểm duyệt viên xét ảnh giấy phép (SRS BR-24); không đối chiếu tự động với cơ sở dữ liệu bên ngoài |
 | Kẻ gian lách từ khoá | Viết lách để qua lọc | Cập nhật danh sách từ khoá; báo cáo của ứng viên |
 | Duyệt sai, chặn nhầm | Nhà tuyển dụng thật bị từ chối | Lý do cụ thể, sửa và gửi lại; kênh khiếu nại |
 
@@ -209,4 +209,4 @@ AC04: Ứng viên đã báo cáo nhận kết quả xử lý.
 - Công ty chưa xác minh có được đăng tin không, hay bắt buộc xác minh trước?
 - Có cho "Lương thoả thuận" không, hay bắt buộc khoảng lương?
 - Ngưỡng 3 báo cáo để tạm ẩn có phù hợp?
-- Kiểm duyệt có làm 24/7 không?
+- Kiểm duyệt có làm 24/7 không? → **Đã chốt:** Không. Chỉ cần có kiểm duyệt viên trong giờ hành chính; tin gửi ngoài giờ nằm trong hàng đợi.
