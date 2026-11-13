@@ -13,7 +13,6 @@
 | Phạm vi | Hồ sơ và xác minh công ty, soạn tin, nháp, gửi duyệt, sửa, đóng, mở lại, nhân bản; hàng đợi duyệt, quyết định duyệt; báo cáo, gỡ tin, khoá công ty |
 | Ngoài phạm vi | Gói trả phí, nhiều tài khoản nhân sự, duyệt bằng AI hoàn toàn, đăng tin hàng loạt |
 | Nền tảng | Web nhà tuyển dụng, Web quản trị (desktop) `[giả định]` |
-| Figma | `[chưa có]` |
 
 ## 2. User Story
 
@@ -401,8 +400,6 @@ sequenceDiagram
 | MSG-28 | Email, banner | Tin "{chức danh}" đã bị gỡ vì vi phạm: {lý do} |
 | MSG-29 | Banner **SCR-N02** | Tin "{chức danh}" đang tạm ẩn để kiểm tra theo báo cáo của người dùng |
 | MSG-30 | Thông báo (ứng viên) | Cảm ơn bạn. Tin bạn báo cáo đã được {gỡ / kiểm tra và giữ lại} |
-
-Bản EN: `[chờ bổ sung]`.
 
 ## 10. Yêu cầu phi chức năng
 

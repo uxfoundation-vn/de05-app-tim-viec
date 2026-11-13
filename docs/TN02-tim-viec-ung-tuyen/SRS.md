@@ -13,7 +13,6 @@
 | Phạm vi | Tìm kiếm, bộ lọc, gợi ý, chi tiết tin, lưu tin, báo cáo tin, ứng tuyển, danh sách đơn, rút đơn |
 | Ngoài phạm vi | Thông báo việc mới theo bộ lọc, bản đồ việc, ứng tuyển hàng loạt, đánh giá công ty |
 | Nền tảng | App ứng viên iOS / Android `[giả định]` |
-| Figma | `[chưa có]` |
 
 ## 2. User Story
 
@@ -371,8 +370,6 @@ sequenceDiagram
 | MSG-17 | Màn thành công | Đã gửi đơn tới {công ty}. Bạn sẽ nhận thông báo khi có cập nhật. \[Xem đơn\] \[Tìm việc khác\] |
 | MSG-18 | Popup | Rút đơn ứng tuyển {chức danh}? Bạn không thể ứng tuyển lại tin này trong 30 ngày. \[Giữ đơn\] \[Rút đơn\] |
 | MSG-43 | Thông báo đẩy | {Công ty}: đơn {chức danh} của bạn đã chuyển sang "{trạng thái}" |
-
-Bản EN: `[chờ bổ sung]`.
 
 ## 10. Yêu cầu phi chức năng
 

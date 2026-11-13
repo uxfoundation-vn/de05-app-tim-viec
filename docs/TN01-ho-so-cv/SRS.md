@@ -13,7 +13,6 @@
 | Phạm vi | Onboarding hồ sơ, sửa từng phần, độ hoàn thiện, CV, chế độ hiển thị, chặn công ty |
 | Ngoài phạm vi | Tạo CV từ mẫu, đọc CV tự động, video giới thiệu, xác minh bằng cấp; màn tìm kiếm ứng viên phía nhà tuyển dụng (phase sau, xem README) |
 | Nền tảng | App ứng viên iOS / Android `[giả định]` |
-| Figma | `[chưa có]` |
 
 ## 2. User Story
 
@@ -371,8 +370,6 @@ sequenceDiagram
 | MSG-06 | Inline **SCR-U03** | Chỉ hỗ trợ PDF hoặc DOCX, tối đa 5 MB |
 | MSG-07 | Toast | Hồ sơ của bạn đã rất tốt! |
 | MSG-08 | Popup | Nhà tuyển dụng có thể tìm thấy hồ sơ của bạn. Số điện thoại và email vẫn được ẩn cho tới khi bạn ứng tuyển. \[Đồng ý\] \[Huỷ\] |
-
-Bản EN: `[chờ bổ sung]`.
 
 ## 10. Yêu cầu phi chức năng
 
