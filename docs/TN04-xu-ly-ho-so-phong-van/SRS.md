@@ -13,7 +13,6 @@
 | Phạm vi | Pipeline, chi tiết ứng viên, ghi chú, gắn sao, đổi trạng thái, lời mời phỏng vấn, chọn khung giờ, xin đổi, nhắc lịch, kết quả |
 | Ngoài phạm vi | Gọi video, nhắn tin tự do, đồng bộ lịch, bảng đánh giá nhiều người, thư mời nhận việc |
 | Nền tảng | Web nhà tuyển dụng; App ứng viên iOS / Android `[giả định]` |
-| Figma | `[chưa có]` |
 
 ## 2. User Story
 
@@ -413,8 +412,6 @@ sequenceDiagram
 | MSG-40 | Thông báo (ứng viên) | Chúc mừng! {Công ty} đã nhận bạn vào vị trí {chức danh} |
 | MSG-41 | Popup (ứng viên) | Từ chối phỏng vấn {chức danh}? Đơn sẽ kết thúc. \[Quay lại\] \[Từ chối\] |
 | MSG-42 | Thông báo hai phía | Nhắc lịch: phỏng vấn {chức danh} lúc {giờ, ngày} · {địa chỉ / link} |
-
-Bản EN: `[chờ bổ sung]`.
 
 ## 10. Yêu cầu phi chức năng
 
