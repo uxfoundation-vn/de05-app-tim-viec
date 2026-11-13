@@ -78,7 +78,7 @@ Từ chối luôn gửi lời nhắn lịch sự, có mẫu sẵn. Ghi chú nộ
 | Cột pipeline | Mới, Đã xem, Phỏng vấn, Đã nhận, Chưa phù hợp, Đã rút |
 | Tự chuyển Đã xem | Khi nhà tuyển dụng mở chi tiết ứng viên lần đầu |
 | Khung giờ phỏng vấn | 1–3 khung; mỗi khung 15–120 phút; sớm nhất sau 24 giờ |
-| Ứng viên trả lời lời mời | Trong 48 giờ; quá hạn → nhà tuyển dụng được báo |
+| Ứng viên trả lời lời mời | Trong 48 giờ; quá hạn → nhà tuyển dụng được báo, đơn về Đã xem để hai bên xử lý tiếp |
 | Nhắc lịch | 24 giờ và 2 giờ trước giờ phỏng vấn |
 | Xin đổi lịch | Ứng viên đổi tối đa 1 lần mỗi lời mời |
 | Ghi chú nội bộ | ≤ 1.000 ký tự, chỉ nhà tuyển dụng thấy |
@@ -167,7 +167,7 @@ AC03: "Không khung nào phù hợp" → xin đổi kèm gợi ý thời gian; t
 
 AC04: Từ chối phỏng vấn → hỏi xác nhận; đơn chuyển Chưa phù hợp với lý do "Ứng viên từ chối".
 
-AC05: Không trả lời trong 48 giờ → nhà tuyển dụng được báo, có thể gửi lại.
+AC05: Không trả lời trong 48 giờ → nhà tuyển dụng được báo, có thể gửi lại; đơn về Đã xem nên ứng viên rút đơn được.
 
 #### US2.3 Nhắc và đổi lịch
 
@@ -189,7 +189,7 @@ AC02: Chưa phù hợp → chọn lời nhắn mẫu, sửa được; gửi kèm
 
 AC03: Đã nhận → lời nhắn chúc mừng và bước tiếp theo (tự soạn).
 
-AC04: Đổi kết quả đã gửi → hỏi xác nhận; ứng viên được báo lại.
+AC04: Đổi kết quả đã gửi (Đã nhận ↔ Chưa phù hợp, trong 30 ngày) → hỏi xác nhận; ứng viên được báo lại.
 
 ## 8. Chỉ số theo dõi `[giả định]`
 
@@ -212,6 +212,8 @@ AC04: Đổi kết quả đã gửi → hỏi xác nhận; ứng viên được 
 | Nhà tuyển dụng không báo kết quả | Đơn treo | Nhắc; đơn treo khi tin đóng → Tin đã đóng (TN02) |
 
 ## 10. Câu hỏi mở
+
+> Câu nào đã có giá trị ở mục 5 thì giá trị đó là **tạm chốt** `[giả định]` để dựng flow. Câu hỏi vẫn để mở cho đến khi PO xác nhận.
 
 - Có cho nhắn tin tự do giữa hai bên ở MVP không?
 - Có đánh dấu "Không đến" để ảnh hưởng hồ sơ ứng viên không?

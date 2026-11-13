@@ -53,7 +53,9 @@ Người tìm việc mất nhiều thời gian lọc tin trùng, tin không ghi 
 | Nhà tuyển dụng doanh nghiệp nhỏ | Đăng tin nhanh, lọc hồ sơ, hẹn phỏng vấn trong một chỗ |
 | Đội kiểm duyệt | Duyệt nhanh, phát hiện tin lừa đảo |
 
-Ngoài phạm vi cả đề: gói đăng tin trả phí và thanh toán, tìm kiếm ứng viên chủ động (headhunt), chấm điểm CV bằng AI, gọi video phỏng vấn trong app, nhắn tin tự do giữa hai bên, bài test năng lực.
+Ngoài phạm vi cả đề: gói đăng tin trả phí và thanh toán, màn tìm kiếm ứng viên và liên hệ chủ động phía nhà tuyển dụng (headhunt), chấm điểm CV bằng AI, gọi video phỏng vấn trong app, nhắn tin tự do giữa hai bên, bài test năng lực.
+
+Riêng chế độ "Cho nhà tuyển dụng tìm thấy" và chặn công ty ở TN01: đề chỉ gồm phần **cài đặt phía ứng viên** (lưu lựa chọn và sự đồng ý). Màn tìm ứng viên phía nhà tuyển dụng thuộc phase sau; khi có, màn đó phải tuân theo BR-09, BR-10 `[giả định]`.
 
 ## Quy ước dùng chung
 

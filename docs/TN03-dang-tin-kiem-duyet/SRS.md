@@ -33,13 +33,13 @@
 | BR-23 | **Hồ sơ công ty** bắt buộc trước khi soạn tin: tên, mã số thuế (10 hoặc 13 số), địa chỉ, quy mô, ngành; logo và giới thiệu tuỳ chọn |
 | BR-24 | **Xác minh công ty**: (a) ảnh giấy phép kinh doanh khớp tên và mã số thuế, do kiểm duyệt viên xét; hoặc (b) xác nhận link gửi tới email có tên miền trùng website công ty. Kết quả: `DA_XAC_MINH` hoặc `BI_TU_CHOI` kèm lý do |
 | BR-25 | **Công ty chưa xác minh**: tối đa 2 tin `DANG_HIEN` cùng lúc; tin không có nhãn xác minh `[giả định]` |
-| BR-26 | **Trường bắt buộc của tin**: chức danh (5–100 ký tự), ngành, hình thức, số lượng (1–100), lương (min ≤ max, triệu/tháng; hoặc "Thoả thuận" kèm lý do ≥ 20 ký tự), kinh nghiệm, địa chỉ làm việc (≥ 1), mô tả (100–5.000 ký tự), yêu cầu (≥ 30 ký tự), hạn nộp (7–60 ngày từ ngày duyệt), có yêu cầu CV hay không |
+| BR-26 | **Trường bắt buộc của tin**: chức danh (5–100 ký tự), ngành, hình thức, số lượng (1–100), lương (min ≤ max, triệu/tháng; hoặc "Thoả thuận" kèm lý do ≥ 20 ký tự), kinh nghiệm, địa chỉ làm việc (≥ 1), mô tả (100–5.000 ký tự), yêu cầu (≥ 30 ký tự), thời gian nhận hồ sơ (7–60 ngày), có yêu cầu CV hay không. Lúc soạn tin chưa biết ngày duyệt, nên nhà tuyển dụng nhập **số ngày nhận hồ sơ**, không nhập ngày cụ thể; form hiện "Hạn nộp dự kiến" = hôm nay + số ngày, kèm ghi chú hạn nộp chính thức tính từ ngày duyệt (BR-30) |
 | BR-27 | **Nháp** tự lưu mỗi 10 giây khi có thay đổi; giữ 90 ngày |
 | BR-28 | **Kiểm tra tự động** khi gửi duyệt, gắn cờ cho kiểm duyệt viên: từ khoá cấm (đóng phí, đặt cọc, việc nhẹ lương cao…); lương max > 3 lần trung vị ngành; số điện thoại, link chat ngoài sàn trong mô tả; nội dung trùng ≥ 90% tin khác |
 | BR-29 | **Hàng đợi duyệt**: ưu tiên tin có cờ, sau đó theo thời gian chờ lâu nhất. Mở tin để duyệt → khoá cho kiểm duyệt viên đó 15 phút |
-| BR-30 | **Quyết định**: `DUYET` → tin `DANG_HIEN`, tính hạn nộp từ lúc duyệt; `YEU_CAU_SUA` → tin `CAN_SUA`, kèm trường và lý do mẫu; `TU_CHOI` → tin `BI_TU_CHOI`, kèm lý do mẫu. Bị yêu cầu sửa hoặc từ chối 3 lần → tin `BI_KHOA` |
-| BR-31 | **Sửa tin đang hiện**: đổi chức danh, lương, mô tả, yêu cầu, địa chỉ → bản sửa vào duyệt, bản cũ vẫn hiện tới khi bản sửa được duyệt. Đổi hạn nộp, số lượng → áp dụng ngay |
-| BR-32 | **Đóng, mở lại**: đóng chủ động hoặc hết hạn → `DA_DONG`. Mở lại trong 30 ngày → `DANG_HIEN` với hạn nộp mới; quá 30 ngày → phải gửi duyệt lại |
+| BR-30 | **Quyết định**: `DUYET` → tin `DANG_HIEN`, hạn nộp = ngày duyệt + số ngày nhận hồ sơ (BR-26); `YEU_CAU_SUA` → tin `CAN_SUA`, kèm trường và lý do mẫu; `TU_CHOI` → tin `BI_TU_CHOI`, kèm lý do mẫu. Bị yêu cầu sửa hoặc từ chối 3 lần → tin `BI_KHOA` |
+| BR-31 | **Sửa tin đang hiện**: đổi chức danh, lương, mô tả, yêu cầu, địa chỉ → bản sửa vào duyệt, bản cũ vẫn hiện tới khi bản sửa được duyệt. Đổi hạn nộp, số lượng → áp dụng ngay; hạn nộp mới phải trong khoảng 7–60 ngày tính từ ngày duyệt và không sớm hơn hôm nay |
+| BR-32 | **Đóng, mở lại**: đóng chủ động hoặc hết hạn → `DA_DONG`. Mở lại trong 30 ngày → `DANG_HIEN` với hạn nộp mới, đơn đang chờ không đổi trạng thái; quá 30 ngày → phải gửi duyệt lại. Đơn của tin `DA_DONG`: giữ trạng thái và xử lý được trong 30 ngày; hết 30 ngày chưa mở lại thì đơn `DA_GUI`, `DA_XEM` chuyển `TIN_DA_DONG` (TN02 BR-22) |
 | BR-33 | **Báo cáo vi phạm**: lý do Lừa đảo, Sai thông tin, Nội dung không phù hợp, Khác. ≥ 3 báo cáo từ 3 ứng viên khác nhau trong 24 giờ → tin `TAM_AN` |
 | BR-34 | **Xử lý báo cáo**: `GIU_TIN` → bỏ `TAM_AN`; `GO_TIN` → tin `BI_GO`, mọi đơn đang chờ (`DA_GUI`, `DA_XEM`, `MOI_PHONG_VAN`) chuyển `TIN_DA_DONG`, lịch phỏng vấn chưa diễn ra bị huỷ và ứng viên được báo lý do gỡ tin; `GO_VA_KHOA` → thêm khoá công ty, mọi tin của công ty bị gỡ |
 | BR-35 | Mọi quyết định của kiểm duyệt viên ghi nhật ký: ai, lúc nào, quyết định, lý do |
@@ -78,7 +78,7 @@ stateDiagram-v2
 | `BI_TU_CHOI` | Không | Xem lý do, sửa, gửi lại |
 | `DANG_HIEN` | Có | Sửa (BR-31), đóng, nhân bản, xem ứng viên |
 | `TAM_AN` | Không | Xem; chờ xử lý |
-| `DA_DONG` | Không (đơn cũ vẫn xử lý được) | Mở lại, nhân bản, xem ứng viên |
+| `DA_DONG` | Không; đơn đã gửi vẫn được xử lý trong 30 ngày kể từ khi đóng (TN02 BR-22) | Mở lại, nhân bản, xem và xử lý ứng viên |
 | `BI_GO`, `BI_KHOA` | Không | Xem lý do, liên hệ hỗ trợ |
 
 ### 4.2 Trạng thái xác minh công ty

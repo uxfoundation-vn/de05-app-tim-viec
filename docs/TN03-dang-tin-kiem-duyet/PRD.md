@@ -77,7 +77,7 @@ Báo cáo của ứng viên vào hàng đợi ưu tiên; nhiều báo cáo thì 
 | Xác minh công ty | Giấy phép kinh doanh (ảnh, mã số thuế) hoặc email tên miền công ty |
 | Công ty chưa xác minh | Được đăng tối đa 2 tin đang hiển thị; tin không có nhãn xác minh |
 | Trường bắt buộc | Chức danh, ngành, hình thức, số lượng, lương (khoảng, hoặc "Thoả thuận" kèm lý do), địa chỉ, mô tả ≥ 100 ký tự, yêu cầu, hạn nộp |
-| Hạn nộp | 7 đến 60 ngày từ ngày duyệt |
+| Hạn nộp | Nhà tuyển dụng chọn số ngày nhận hồ sơ, 7 đến 60 ngày; hạn nộp chính thức = ngày duyệt + số ngày đó |
 | Thời gian duyệt mục tiêu | 4 giờ làm việc |
 | Sửa tin đang hiện | Sửa lương, chức danh, mô tả → duyệt lại; sửa hạn nộp, số lượng → không cần |
 | Báo cáo | ≥ 3 báo cáo trong 24 giờ → tự tạm ẩn tin |
@@ -203,6 +203,8 @@ AC04: Ứng viên đã báo cáo nhận kết quả xử lý.
 | Duyệt sai, chặn nhầm | Nhà tuyển dụng thật bị từ chối | Lý do cụ thể, sửa và gửi lại; kênh khiếu nại |
 
 ## 10. Câu hỏi mở
+
+> Câu nào đã có giá trị ở mục 5 thì giá trị đó là **tạm chốt** `[giả định]` để dựng flow. Câu hỏi vẫn để mở cho đến khi PO xác nhận.
 
 - Công ty chưa xác minh có được đăng tin không, hay bắt buộc xác minh trước?
 - Có cho "Lương thoả thuận" không, hay bắt buộc khoảng lương?

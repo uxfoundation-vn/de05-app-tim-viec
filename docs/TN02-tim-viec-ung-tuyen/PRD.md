@@ -79,7 +79,7 @@ Mỗi đơn có trạng thái rõ ràng, được báo khi thay đổi. Đơn kh
 | Tin hiển thị | Chỉ tin đã duyệt, còn hạn, chưa đóng |
 | Sắp xếp mặc định | Phù hợp nhất (khớp từ khoá, mong muốn), sau đó mới nhất |
 | Lưu tin | Tối đa 100 tin |
-| Ứng tuyển | Cần hồ sơ tối thiểu; mỗi tin ứng tuyển 1 lần |
+| Ứng tuyển | Cần hồ sơ tối thiểu; mỗi tin chỉ có 1 đơn còn hiệu lực. Ứng tuyển lại được sau 30 ngày kể từ khi rút đơn, hoặc khi tin đã đóng quá 30 ngày được mở lại |
 | Lời nhắn | ≤ 500 ký tự |
 | Rút đơn | Khi đơn chưa ở Mời phỏng vấn trở đi; rút xong không ứng tuyển lại tin đó trong 30 ngày |
 | Đơn không được xử lý | Sau 14 ngày chưa được xem, ghi chú "Nhà tuyển dụng chưa phản hồi" |
@@ -197,7 +197,7 @@ User Story: Là ứng viên, tôi muốn rút đơn khi không còn quan tâm đ
 
 AC01: Rút được khi đơn ở Đã gửi hoặc Đã xem; hỏi xác nhận.
 
-AC02: Rút xong không ứng tuyển lại tin đó trong 30 ngày.
+AC02: Rút xong không ứng tuyển lại tin đó trong 30 ngày; sau 30 ngày ứng tuyển lại được và tạo đơn mới.
 
 ## 8. Chỉ số theo dõi `[giả định]`
 
@@ -220,6 +220,8 @@ AC02: Rút xong không ứng tuyển lại tin đó trong 30 ngày.
 | Nhà tuyển dụng không phản hồi | Ứng viên mất niềm tin | Ghi chú 14 ngày; nhắc nhà tuyển dụng (TN04) |
 
 ## 10. Câu hỏi mở
+
+> Câu nào đã có giá trị ở mục 5 thì giá trị đó là **tạm chốt** `[giả định]` để dựng flow. Câu hỏi vẫn để mở cho đến khi PO xác nhận.
 
 - Có ẩn tin không ghi lương khỏi kết quả mặc định không?
 - Tin hết hạn tự đóng đơn chưa xử lý thành "Tin đã đóng" hay giữ nguyên?

@@ -11,7 +11,7 @@
 | Mục tiêu | Ứng viên tạo hồ sơ theo từng phần, quản lý CV và kiểm soát ai được xem hồ sơ |
 | Actor | Ứng viên · App ứng viên · Máy chủ · Dịch vụ quét file |
 | Phạm vi | Onboarding hồ sơ, sửa từng phần, độ hoàn thiện, CV, chế độ hiển thị, chặn công ty |
-| Ngoài phạm vi | Tạo CV từ mẫu, đọc CV tự động, video giới thiệu, xác minh bằng cấp |
+| Ngoài phạm vi | Tạo CV từ mẫu, đọc CV tự động, video giới thiệu, xác minh bằng cấp; màn tìm kiếm ứng viên phía nhà tuyển dụng (phase sau, xem README) |
 | Nền tảng | App ứng viên iOS / Android `[giả định]` |
 | Figma | `[chưa có]` |
 
@@ -37,8 +37,8 @@
 | BR-06 | **Độ hoàn thiện** = tổng trọng số phần đã có: `CO_BAN` 20, `MONG_MUON` 20, `KINH_NGHIEM` 20 (hoặc cờ Chưa có kinh nghiệm + `HOC_VAN` có ≥ 1 mục), `HOC_VAN` 15, `KY_NANG` 15 (≥ 3 kỹ năng), `GIOI_THIEU` 10 `[giả định]` |
 | BR-07 | **Gợi ý**: tối đa 3 phần thiếu có trọng số cao nhất, mỗi gợi ý mở thẳng màn sửa phần đó |
 | BR-08 | **CV**: tối đa 3 file; PDF hoặc DOCX; ≤ 5 MB; tên hiển thị ≤ 50 ký tự; đúng 1 CV mặc định khi có ≥ 1 CV. File được quét; nhiễm mã độc → từ chối (MSG-05) |
-| BR-09 | **Hiển thị**: `CHI_KHI_UNG_TUYEN` (mặc định) hoặc `CHO_TIM_THAY`. Số điện thoại, email chỉ hiện cho nhà tuyển dụng của tin ứng viên đã ứng tuyển, trong mọi chế độ |
-| BR-10 | **Chặn công ty**: tối đa 20; công ty bị chặn không thấy hồ sơ ở mọi chế độ, trừ đơn ứng viên chủ động gửi cho chính công ty đó |
+| BR-09 | **Hiển thị**: `CHI_KHI_UNG_TUYEN` (mặc định) hoặc `CHO_TIM_THAY`. Trong phạm vi đề, `CHO_TIM_THAY` chỉ được lưu làm lựa chọn và sự đồng ý của ứng viên; chưa có màn tìm ứng viên nên hồ sơ vẫn chỉ đến tay nhà tuyển dụng qua đơn ứng tuyển. Màn tìm ứng viên ở phase sau phải lọc theo cờ này `[giả định]`. Số điện thoại, email chỉ hiện cho nhà tuyển dụng của tin ứng viên đã ứng tuyển, trong mọi chế độ |
+| BR-10 | **Chặn công ty**: tối đa 20; công ty bị chặn không thấy hồ sơ ở mọi chế độ, trừ đơn ứng viên chủ động gửi cho chính công ty đó. Trong phạm vi đề, danh sách chặn chỉ được lưu; có hiệu lực khi có màn tìm ứng viên (BR-09) |
 
 ## 4. Trạng thái
 
@@ -234,7 +234,7 @@ flowchart TD
   A["Hồ sơ → Quyền riêng tư"] --> B{"Chế độ"}
   B -->|Chỉ khi ứng tuyển| C["Ẩn khỏi tìm kiếm của nhà tuyển dụng"]
   B -->|Cho tìm thấy| D["MSG-08 giải thích, xác nhận"]
-  D --> E["Hồ sơ hiện trong tìm kiếm, liên hệ vẫn ẩn BR-09"]
+  D --> E["Lưu lựa chọn cho tìm thấy, liên hệ vẫn ẩn BR-09"]
   A --> F["Chặn công ty"]
   F --> G["Tìm công ty theo tên"]
   G --> H{"Dưới 20 công ty?"}
@@ -249,7 +249,7 @@ flowchart TD
 | 1 | Ứng viên | Hồ sơ → Quyền riêng tư |
 | 2 | Ứng viên | Chọn chế độ "Cho tìm thấy" |
 | 3 | Hệ thống | Hiện MSG-08 giải thích, chờ xác nhận |
-| 4 | Hệ thống | Lưu; hồ sơ hiện trong tìm kiếm của nhà tuyển dụng, thông tin liên hệ vẫn ẩn (BR-09) |
+| 4 | Hệ thống | Lưu lựa chọn và thời điểm đồng ý; hồ sơ đủ điều kiện hiện trong tìm kiếm của nhà tuyển dụng khi tính năng đó có ở phase sau, thông tin liên hệ vẫn ẩn (BR-09) |
 
 **Luồng thay thế**
 

@@ -37,11 +37,11 @@
 | BR-15 | **Sắp xếp**: Phù hợp nhất (mặc định), Mới nhất, Lương cao nhất. Tin "Lương thoả thuận" xếp cuối khi sắp theo lương |
 | BR-16 | **Gợi ý việc phù hợp**: tin khớp vị trí hoặc ngành, và khu vực trong `MONG_MUON`; tối đa 20, mới nhất trước |
 | BR-17 | **Lưu tin** tối đa 100; vượt → MSG-11. Tin đã lưu đổi trạng thái vẫn giữ trong danh sách với nhãn tương ứng |
-| BR-18 | **Điều kiện ứng tuyển**: hồ sơ `TOI_THIEU` trở lên (BR-04); chưa ứng tuyển tin này; không trong 30 ngày sau khi rút đơn tin này; chưa quá 20 đơn trong ngày; tin `DANG_HIEN`. Tin yêu cầu CV → bắt buộc CV `SAN_SANG` |
+| BR-18 | **Điều kiện ứng tuyển**: hồ sơ `TOI_THIEU` trở lên (BR-04); chưa có đơn còn hiệu lực cho tin này (đơn `DA_RUT` và `TIN_DA_DONG` không tính là còn hiệu lực); không trong 30 ngày sau khi rút đơn tin này; chưa quá 20 đơn trong ngày; tin `DANG_HIEN`. Tin yêu cầu CV → bắt buộc CV `SAN_SANG` |
 | BR-19 | **Nội dung đơn**: bản chụp hồ sơ tại thời điểm gửi, CV đã chọn (bản sao), lời nhắn ≤ 500 ký tự. Sửa hồ sơ sau khi gửi không đổi đơn đã gửi |
-| BR-20 | **Gửi đơn** dùng idempotency key = user_id + job_id; bấm nhiều lần chỉ tạo 1 đơn. Gửi xong, nhà tuyển dụng thấy liên hệ của ứng viên (BR-09) |
+| BR-20 | **Gửi đơn** dùng idempotency key = user_id + job_id + số thứ tự lần ứng tuyển (bằng số đơn cũ của ứng viên cho tin này + 1); bấm nhiều lần chỉ tạo 1 đơn, còn lần ứng tuyển lại hợp lệ theo BR-18 tạo đơn mới. Đơn cũ `DA_RUT`, `TIN_DA_DONG` vẫn giữ trong lịch sử. Gửi xong, nhà tuyển dụng thấy liên hệ của ứng viên (BR-09) |
 | BR-21 | **Rút đơn** khi đơn `DA_GUI` hoặc `DA_XEM`; đơn chuyển `DA_RUT`, nhà tuyển dụng thấy nhãn "Ứng viên đã rút" và mất quyền xem liên hệ |
-| BR-22 | **Đơn chậm**: 14 ngày ở `DA_GUI` → hiện ghi chú MSG-16 (không đổi trạng thái). Tin đóng khi đơn chưa có kết quả → đơn `TIN_DA_DONG` |
+| BR-22 | **Đơn chậm**: 14 ngày ở `DA_GUI` → hiện ghi chú MSG-16 (không đổi trạng thái). **Tin đóng** (`DA_DONG`, do nhà tuyển dụng đóng hoặc hết hạn): đơn `DA_GUI`, `DA_XEM`, `MOI_PHONG_VAN` giữ nguyên trạng thái, nhà tuyển dụng vẫn xử lý được, ứng viên thấy thêm ghi chú "Tin đã ngừng nhận hồ sơ"; tin mở lại trong 30 ngày thì đơn không đổi. Hết 30 ngày tin chưa mở lại → đơn còn `DA_GUI`, `DA_XEM` chuyển `TIN_DA_DONG`; đơn `MOI_PHONG_VAN` giữ nguyên tới khi có kết quả. Tin bị gỡ → theo BR-34. Tin mở lại sau 30 ngày (duyệt lại) không khôi phục đơn `TIN_DA_DONG`; ứng viên ứng tuyển lại được (BR-18) |
 
 ## 4. Trạng thái
 
@@ -61,8 +61,11 @@ stateDiagram-v2
   MOI_PHONG_VAN --> DA_XEM : Nhà tuyển dụng huỷ lịch, BR-46
   CHUA_PHU_HOP --> DA_XEM : Mở lại trong 30 ngày, BR-38
   MOI_PHONG_VAN --> TIN_DA_DONG : Tin bị gỡ do vi phạm, BR-34
-  DA_GUI --> TIN_DA_DONG : Tin đóng
-  DA_XEM --> TIN_DA_DONG : Tin đóng
+  DA_GUI --> TIN_DA_DONG : Tin đóng quá 30 ngày hoặc bị gỡ, BR-22
+  DA_XEM --> TIN_DA_DONG : Tin đóng quá 30 ngày hoặc bị gỡ, BR-22
+  DA_NHAN --> CHUA_PHU_HOP : Đổi kết quả, BR-38
+  CHUA_PHU_HOP --> DA_NHAN : Đổi kết quả, BR-38
+  MOI_PHONG_VAN --> DA_XEM : Lời mời quá hạn, BR-43
   DA_RUT --> [*]
   CHUA_PHU_HOP --> [*]
   DA_NHAN --> [*]
@@ -77,7 +80,7 @@ stateDiagram-v2
 | `DA_NHAN` | "Chúc mừng! Bạn đã được nhận" | Không |
 | `CHUA_PHU_HOP` | "Chưa phù hợp lần này" + lời nhắn của nhà tuyển dụng nếu có | Không |
 | `DA_RUT` | "Bạn đã rút đơn" | – |
-| `TIN_DA_DONG` | "Tin đã đóng" | – |
+| `TIN_DA_DONG` | "Tin đã đóng"; tin mở lại thì ứng tuyển lại được | – |
 
 ## 5. Use Case
 

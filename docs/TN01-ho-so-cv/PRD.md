@@ -44,6 +44,7 @@ Hồ sơ là thứ nhà tuyển dụng nhìn thấy đầu tiên khi ứng viên
 - Tải lên tối đa 3 file CV (PDF, DOCX), chọn CV mặc định.
 - Chế độ hiển thị: Chỉ khi ứng tuyển (mặc định), hoặc Cho nhà tuyển dụng tìm thấy.
 - Chặn công ty cụ thể không thấy hồ sơ.
+- Hai mục trên chỉ gồm phần cài đặt phía ứng viên; màn tìm ứng viên phía nhà tuyển dụng ngoài phạm vi cả đề (xem README).
 
 ### 3.2 Ngoài phạm vi
 
@@ -189,6 +190,8 @@ AC03: Chặn công ty theo tên; công ty bị chặn không thấy hồ sơ dù
 | Gợi ý gây áp lực | Ứng viên lao động phổ thông thấy hồ sơ "chưa tốt" | Trọng số khác theo nhóm ngành `[cần chốt]` |
 
 ## 10. Câu hỏi mở
+
+> Câu nào đã có giá trị ở mục 5 thì giá trị đó là **tạm chốt** `[giả định]` để dựng flow. Câu hỏi vẫn để mở cho đến khi PO xác nhận.
 
 - Hồ sơ tối thiểu có cần số điện thoại đã xác minh không?
 - Có cho ứng tuyển không cần hồ sơ (chỉ CV) không?
