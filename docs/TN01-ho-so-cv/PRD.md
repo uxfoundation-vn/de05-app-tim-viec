@@ -187,7 +187,7 @@ AC03: Chặn công ty theo tên; công ty bị chặn không thấy hồ sơ dù
 | File CV chứa mã độc | Nhà tuyển dụng tải về bị nhiễm | Quét file khi tải lên; chỉ PDF, DOCX |
 | Lộ thông tin cá nhân | Liên hệ bị thu thập hàng loạt | Liên hệ chỉ hiện sau khi ứng tuyển; giới hạn xem |
 | Danh mục ngành, kỹ năng | Phải có sẵn, đủ tiếng Việt | Đội nội dung cung cấp; cho tự nhập |
-| Gợi ý gây áp lực | Ứng viên lao động phổ thông thấy hồ sơ "chưa tốt" | Trọng số khác theo nhóm ngành `[cần chốt]` |
+| Gợi ý gây áp lực | Ứng viên lao động phổ thông thấy hồ sơ "chưa tốt" | Trọng số khác theo nhóm ngành: lao động phổ thông không cần học vấn để đạt 100% (SRS BR-06) |
 
 ## 10. Câu hỏi mở
 
